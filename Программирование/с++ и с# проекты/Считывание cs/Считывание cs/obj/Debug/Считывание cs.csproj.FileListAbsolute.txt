@@ -1,0 +1,7 @@
+D:\с++ и с# проекты\Считывание cs\Считывание cs\bin\Debug\Считывание cs.exe.config
+D:\с++ и с# проекты\Считывание cs\Считывание cs\bin\Debug\Считывание cs.exe
+D:\с++ и с# проекты\Считывание cs\Считывание cs\bin\Debug\Считывание cs.pdb
+D:\с++ и с# проекты\Считывание cs\Считывание cs\obj\Debug\Считывание cs.csprojAssemblyReference.cache
+D:\с++ и с# проекты\Считывание cs\Считывание cs\obj\Debug\Считывание cs.csproj.CoreCompileInputs.cache
+D:\с++ и с# проекты\Считывание cs\Считывание cs\obj\Debug\Считывание cs.exe
+D:\с++ и с# проекты\Считывание cs\Считывание cs\obj\Debug\Считывание cs.pdb

@@ -1,0 +1,4 @@
+﻿  расчет ресурсов.cpp
+d:\windows kits\10\include\10.0.17763.0\shared\minwindef.h(132): warning C4005: PASCAL: изменение макроопределения
+  d:\windows kits\10\include\10.0.17763.0\shared\lmcons.h(45): note: см. предыдущее определение "PASCAL"
+  расчет ресурсов.vcxproj -> D:\Программирование\с++ и с# проекты\расчет ресурсов\x64\Debug\расчет ресурсов.exe
