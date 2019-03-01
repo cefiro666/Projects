@@ -1,4 +1,4 @@
-//определения методов класса Сalculations
+п»ї//РѕРїСЂРµРґРµР»РµРЅРёСЏ РјРµС‚РѕРґРѕРІ РєР»Р°СЃСЃР° РЎalculations
 #include "pch.h"
 #include "calculations.h"
 #include "readings.h"
@@ -12,23 +12,23 @@ float Calculations::get_cost(int i) { return Arr_calculations[2][i]; }
 void Calculations::set_expenditure(int i, float value) { Arr_calculations[0][i] = value; }
 void Calculations::set_cost(int i, float value) { Arr_calculations[2][i] = value; }
 void Calculations::calculation(Readings &present_readings, Readings &post_readings) {
-	//установка значений тарифов из файла в элементы массива
+	//СѓСЃС‚Р°РЅРѕРІРєР° Р·РЅР°С‡РµРЅРёР№ С‚Р°СЂРёС„РѕРІ РёР· С„Р°Р№Р»Р° РІ СЌР»РµРјРµРЅС‚С‹ РјР°СЃСЃРёРІР°
 	Arr_calculations[1][0] = Arr_calculations[1][2] = present_readings.get_hot_water_tariff();
 	Arr_calculations[1][1] = Arr_calculations[1][3] = present_readings.get_cold_water_tariff();
 	Arr_calculations[1][4] = present_readings.get_electricity_tariff();
-	//рассчет значений расхода и стоимости по каждому ресурсу и вычисление итоговой стоимости
+	//СЂР°СЃСЃС‡РµС‚ Р·РЅР°С‡РµРЅРёР№ СЂР°СЃС…РѕРґР° Рё СЃС‚РѕРёРјРѕСЃС‚Рё РїРѕ РєР°Р¶РґРѕРјСѓ СЂРµСЃСѓСЂСЃСѓ Рё РІС‹С‡РёСЃР»РµРЅРёРµ РёС‚РѕРіРѕРІРѕР№ СЃС‚РѕРёРјРѕСЃС‚Рё
 	for (int i = 0; i < 5; i++) {
-		//рассчет расхода
+		//СЂР°СЃСЃС‡РµС‚ СЂР°СЃС…РѕРґР°
 		Arr_calculations[0][i] = present_readings.get_readings(i) - post_readings.get_readings(i);
-		//расчет стоимости по тарифу и расходу
+		//СЂР°СЃС‡РµС‚ СЃС‚РѕРёРјРѕСЃС‚Рё РїРѕ С‚Р°СЂРёС„Сѓ Рё СЂР°СЃС…РѕРґСѓ
 		Arr_calculations[2][i] = Arr_calculations[1][i] * Arr_calculations[0][i];
-		//прибавка к итоговой стоимости
+		//РїСЂРёР±Р°РІРєР° Рє РёС‚РѕРіРѕРІРѕР№ СЃС‚РѕРёРјРѕСЃС‚Рё
 		sum_cost += Arr_calculations[2][i]; 
-		//прибавка  к итоговому показателю расхода по воде (только для воды)
+		//РїСЂРёР±Р°РІРєР°  Рє РёС‚РѕРіРѕРІРѕРјСѓ РїРѕРєР°Р·Р°С‚РµР»СЋ СЂР°СЃС…РѕРґР° РїРѕ РІРѕРґРµ (С‚РѕР»СЊРєРѕ РґР»СЏ РІРѕРґС‹)
 		if (i < 4) {
 			sum_expenditure += Arr_calculations[0][i];
 		}
 	}
-	//прибавка стоимости за водоотведение
+	//РїСЂРёР±Р°РІРєР° СЃС‚РѕРёРјРѕСЃС‚Рё Р·Р° РІРѕРґРѕРѕС‚РІРµРґРµРЅРёРµ
 	sum_cost += present_readings.get_drainage_tariff() * sum_expenditure;
 }

@@ -1,4 +1,4 @@
-//объявление класса Readings, определение переменных и прототипов методов
+п»ї//РѕР±СЉСЏРІР»РµРЅРёРµ РєР»Р°СЃСЃР° Readings, РѕРїСЂРµРґРµР»РµРЅРёРµ РїРµСЂРµРјРµРЅРЅС‹С… Рё РїСЂРѕС‚РѕС‚РёРїРѕРІ РјРµС‚РѕРґРѕРІ
 #pragma once
 #include "calculations.h"
 #include <string>
@@ -8,34 +8,34 @@
 
 using namespace std;
 
-//класс для хранения показаний счетчиков и дат, и тарифов
+//РєР»Р°СЃСЃ РґР»СЏ С…СЂР°РЅРµРЅРёСЏ РїРѕРєР°Р·Р°РЅРёР№ СЃС‡РµС‚С‡РёРєРѕРІ Рё РґР°С‚, Рё С‚Р°СЂРёС„РѕРІ
 class Readings {
 
 private:
-	//хранит дату отчетного дня
+	//С…СЂР°РЅРёС‚ РґР°С‚Сѓ РѕС‚С‡РµС‚РЅРѕРіРѕ РґРЅСЏ
 	string date; 
-	// массив для хранения показаний счетчика: 
-	//[0]-горячая ванна,											
-	//[1]-холодная ванна, 																
-	//[2]-горячая кухня, 																
-	//[3]-холодная кухня, 																
-	//[4]-энергия
+	// РјР°СЃСЃРёРІ РґР»СЏ С…СЂР°РЅРµРЅРёСЏ РїРѕРєР°Р·Р°РЅРёР№ СЃС‡РµС‚С‡РёРєР°: 
+	//[0]-РіРѕСЂСЏС‡Р°СЏ РІР°РЅРЅР°,											
+	//[1]-С…РѕР»РѕРґРЅР°СЏ РІР°РЅРЅР°, 																
+	//[2]-РіРѕСЂСЏС‡Р°СЏ РєСѓС…РЅСЏ, 																
+	//[3]-С…РѕР»РѕРґРЅР°СЏ РєСѓС…РЅСЏ, 																
+	//[4]-СЌРЅРµСЂРіРёСЏ
 	float Arr_readings[5];
-	//тариф водоотведения
+	//С‚Р°СЂРёС„ РІРѕРґРѕРѕС‚РІРµРґРµРЅРёСЏ
 	float drainage_tariff;
-	//тариф на холодную воду
+	//С‚Р°СЂРёС„ РЅР° С…РѕР»РѕРґРЅСѓСЋ РІРѕРґСѓ
 	float cold_water_tariff;
-	//тариф на горячую воду
+	//С‚Р°СЂРёС„ РЅР° РіРѕСЂСЏС‡СѓСЋ РІРѕРґСѓ
 	float hot_water_tariff;
-	//тариф электроэнергию
+	//С‚Р°СЂРёС„ СЌР»РµРєС‚СЂРѕСЌРЅРµСЂРіРёСЋ
 	float electricity_tariff;
 
 public:	
-	//возврат, установка и печать даты
+	//РІРѕР·РІСЂР°С‚, СѓСЃС‚Р°РЅРѕРІРєР° Рё РїРµС‡Р°С‚СЊ РґР°С‚С‹
 	string get_date();
 	void set_date(string date);	
 	void print_date();
-	//возврат и установка значений тарифов
+	//РІРѕР·РІСЂР°С‚ Рё СѓСЃС‚Р°РЅРѕРІРєР° Р·РЅР°С‡РµРЅРёР№ С‚Р°СЂРёС„РѕРІ
 	float get_drainage_tariff();
 	void set_drainage_tariff(float value);
 	float get_cold_water_tariff();
@@ -44,14 +44,14 @@ public:
 	void set_hot_water_tariff(float value);
 	float get_electricity_tariff();
 	void set_electricity_tariff(float value);
-	//возврат, установка и печать показания
+	//РІРѕР·РІСЂР°С‚, СѓСЃС‚Р°РЅРѕРІРєР° Рё РїРµС‡Р°С‚СЊ РїРѕРєР°Р·Р°РЅРёСЏ
 	float get_readings(int i); 
 	void set_readings(int i, float value);
 	void print_readings(int i);
-	//запись новых данных и чтение старых (дата, показания) из файла
+	//Р·Р°РїРёСЃСЊ РЅРѕРІС‹С… РґР°РЅРЅС‹С… Рё С‡С‚РµРЅРёРµ СЃС‚Р°СЂС‹С… (РґР°С‚Р°, РїРѕРєР°Р·Р°РЅРёСЏ) РёР· С„Р°Р№Р»Р°
 	void write(string path);
 	void read(string path);
-	//дружественные функции и методы
+	//РґСЂСѓР¶РµСЃС‚РІРµРЅРЅС‹Рµ С„СѓРЅРєС†РёРё Рё РјРµС‚РѕРґС‹
 	friend void fill_present_readings(Readings &present_readings);
 	friend void Calculations::calculation(Readings &present_readings, Readings &post_readings);
 	friend void set_tariff(Readings &present_readings, Readings &post_readings, Calculations &calc);
