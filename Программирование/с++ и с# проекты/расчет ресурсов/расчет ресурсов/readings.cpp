@@ -3,12 +3,12 @@
 #include "pch.h"
 #include "readings.h"
 
+string Readings::get_date() {return date;}
 float Readings::get_drainage_tariff() { return drainage_tariff; }
 float Readings::get_cold_water_tariff() { return cold_water_tariff; }
 float Readings::get_hot_water_tariff() { return hot_water_tariff; }
 float Readings::get_electricity_tariff() { return electricity_tariff; }
 float Readings::get_readings(int i) {return Arr_readings[i];}
-string Readings::get_date() {return date;}
 void Readings::set_readings(int i, float value) {Arr_readings[i] = value;}
 void Readings::set_date(string date) {this->date = date;}
 void Readings::set_drainage_tariff(float value) { drainage_tariff = value; }
@@ -18,9 +18,9 @@ void Readings::set_electricity_tariff(float value) { electricity_tariff = value;
 void Readings::print_date() {cout << " " << date << endl;}
 void Readings::print_readings(int i) {
 	int n;
-	//проверка для форматирования при выводе последнего значения в массиве (один знак после запятой, для остальных три знака) 
-	//сокращенная форма if/else 
-	n = (i == 4) ? 1 : 3; 
+	//проверка для форматирования при выводе последнего значения в массиве 
+	//(один знак после запятой для показний электросчетчика, три знака для водяных)	
+	n = (i == 4) ? 1 : 3;
 	cout << " " << fixed << setprecision(n) << Arr_readings[i] << endl;
 }
 //запись показаний счетчиков и даты в фаил данных (нынешний период)

@@ -134,7 +134,7 @@ void set_tariff(Readings &present_readings, Readings &post_readings, Calculation
 			cout << " -за 1 кубометр холодной воды (руб.): ";
 			cin >> value;
 			present_readings.set_cold_water_tariff(value);
-			cout << "  за 1 киловатт/час электроэнергии (руб.): ";
+			cout << " -за 1 киловатт/час электроэнергии (руб.): ";
 			cin >> value;
 			present_readings.set_electricity_tariff(value);
 			cout << " -за 1 кубометр отведенной воды (руб.): ";
