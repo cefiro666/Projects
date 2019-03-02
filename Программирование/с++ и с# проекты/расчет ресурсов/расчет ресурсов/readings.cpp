@@ -16,13 +16,6 @@ void Readings::set_cold_water_tariff(float value) { cold_water_tariff = value;}
 void Readings::set_hot_water_tariff(float value) { hot_water_tariff = value; }
 void Readings::set_electricity_tariff(float value) { electricity_tariff = value; }
 void Readings::print_date() {cout << " " << date << endl;}
-void Readings::print_readings(int i) {
-	int n;
-	//проверка для форматирования при выводе последнего значения в массиве 
-	//(один знак после запятой для показний электросчетчика, три знака для водяных)	
-	n = (i == 4) ? 1 : 3;
-	cout << " " << fixed << setprecision(n) << Arr_readings[i] << endl;
-}
 //запись показаний счетчиков и даты в фаил данных (нынешний период)
 void Readings::write(string path) { 
 	//создается строчный массив для чтения всего файла

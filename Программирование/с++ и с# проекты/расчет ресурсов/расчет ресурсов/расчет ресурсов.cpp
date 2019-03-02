@@ -43,11 +43,11 @@ int main() {
 	cout << " Информация о прошлом отчетном периоде\n\n";
 	cout << " Дата снятия показаний: " << post_readings.get_date() << endl << endl;
 	cout << " Показания счетчиков: " << endl;
-	cout << setw(30) << left << " -горячей воды в ванной: "   << setw(10) << right << post_readings.get_readings(0) << " кубометр\n";
-	cout << setw(30) << left << " -холодной воды в ванной: "  << setw(10) << right << post_readings.get_readings(1) << " кубометр\n";
-	cout << setw(30) << left << " -горячей воды в кухне: "    << setw(10) << right << post_readings.get_readings(2) << " кубометр\n";
-	cout << setw(30) << left << " -холодной воды в кухне: "   << setw(10) << right << post_readings.get_readings(3) << " кубометр\n";
-	cout << setw(30) << left << " -электроэнергии: "          << setw(10) << right << post_readings.get_readings(4) << " киловатт/час\n";
+	cout << setw(30) << left << " -горячей воды в ванной: "   << setw(10) << right << fixed << setprecision(3) << post_readings.get_readings(0) << " кубометр\n";
+	cout << setw(30) << left << " -холодной воды в ванной: "  << setw(10) << right << fixed << setprecision(3) << post_readings.get_readings(1) << " кубометр\n";
+	cout << setw(30) << left << " -горячей воды в кухне: "    << setw(10) << right << fixed << setprecision(3) << post_readings.get_readings(2) << " кубометр\n";
+	cout << setw(30) << left << " -холодной воды в кухне: "   << setw(10) << right << fixed << setprecision(3) << post_readings.get_readings(3) << " кубометр\n";
+	cout << setw(30) << left << " -электроэнергии: "          << setw(10) << right << fixed << setprecision(1) << post_readings.get_readings(4) << " киловатт/час\n";
 	cout << " ______________________________________________________________\n\n";
 	//ввод нынешних данных
 	fill_present_readings(present_readings);

@@ -44,10 +44,9 @@ public:
 	void set_hot_water_tariff(float value);
 	float get_electricity_tariff();
 	void set_electricity_tariff(float value);
-	//возврат, установка и печать показания
+	//возврат, установка показания
 	float get_readings(int i); 
 	void set_readings(int i, float value);
-	void print_readings(int i);
 	//запись новых данных и чтение старых (дата, показания) из файла
 	void write(string path);
 	void read(string path);

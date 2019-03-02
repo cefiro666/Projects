@@ -1,10 +1,1 @@
-﻿  pch.cpp
-  calculations.cpp
-  readings.cpp
-  расчет ресурсов.cpp
-d:\windows kits\10\include\10.0.17763.0\shared\minwindef.h(132): warning C4005: PASCAL: изменение макроопределения
-  d:\windows kits\10\include\10.0.17763.0\shared\lmcons.h(45): note: см. предыдущее определение "PASCAL"
-  Создание кода
-  All 246 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
-  Создание кода завершено
-  расчет ресурсов.vcxproj -> D:\programm\Программирование\с++ и с# проекты\расчет ресурсов\x64\Release\расчет ресурсов.exe
+﻿  расчет ресурсов.vcxproj -> D:\Projects\Программирование\с++ и с# проекты\расчет ресурсов\x64\Release\расчет ресурсов.exe
