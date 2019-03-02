@@ -1,2 +1,6 @@
 ﻿  game.cpp
+c:\users\cefiro\desktop\game\game\game.cpp(37): warning C4305: +=: усечение из "double" в "float"
+c:\users\cefiro\desktop\game\game\game.cpp(43): warning C4305: -=: усечение из "double" в "float"
+c:\users\cefiro\desktop\game\game\game.cpp(49): warning C4305: -=: усечение из "double" в "float"
+c:\users\cefiro\desktop\game\game\game.cpp(55): warning C4305: +=: усечение из "double" в "float"
   game.vcxproj -> C:\Users\cefiro\Desktop\game\Debug\game.exe
