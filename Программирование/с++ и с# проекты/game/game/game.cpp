@@ -1,18 +1,21 @@
 ﻿#include "pch.h"
 #include <SFML/Graphics.hpp>
 
+using namespace sf;
+using namespace std;
+
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(200, 200), "Lesson 1. kychka-pc.ru");
-	sf::CircleShape shape(100.f);
-	shape.setFillColor(sf::Color::Green);
-
+	RenderWindow window(VideoMode(800, 600), "Lesson 1. kychka-pc.ru");
+	CircleShape shape(100.f);
+	shape.setFillColor(Color::Green);
+	shape.setPosition(100, 100);
 	while (window.isOpen())
 	{
-		sf::Event event;
+		Event event;
 		while (window.pollEvent(event))
 		{
-			if (event.type == sf::Event::Closed)
+			if (event.type == Event::Closed)
 				window.close();
 		}
 
