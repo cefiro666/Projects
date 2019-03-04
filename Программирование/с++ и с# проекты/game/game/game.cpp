@@ -1,69 +1,57 @@
 ﻿#include "pch.h"
+#include "Ball.h"
+#include "Player.h"
 #include <SFML/Graphics.hpp>
-#include <iostream>
+
 
 using namespace sf;
 using namespace std;
 
+
 int main()
 {
-	Clock clock; //создаем переменную времени, т.о. привязка ко времени(а не загруженности/мощности процессора).
-	RenderWindow window(VideoMode(800, 600), "Lesson 1. kychka-pc.ru");
-	CircleShape shape(10);
-	shape.setFillColor(Color::Green);
-	float x = 100;
-	float y = 100;
+	Player left(15, 150, 50, 200, Color::Green);
+	Player right(15, 150, 935, 200, Color::Blue);
+	Ball ball(10, 500, 300, Color::Red);
+
+	ContextSettings settings;
+	settings.antialiasingLevel = 4;
+	RenderWindow window(VideoMode(1000, 600), "PONG", Style::Default, settings);
+	window.setFramerateLimit(60);
+
 	while (window.isOpen())
 	{
-		
-		shape.setPosition(x, y);
 		Event event;
 		while (window.pollEvent(event))
 		{
-			float time = clock.getElapsedTime().asMicroseconds(); //дать прошедшее время в микросекундах
-			clock.restart(); //перезагружает время
-			time = time / 800; //скорость игры
-			cout << time << "\n";//смотрим как живет время (перезагружается, как видим)
 			if (event.type == Event::Closed)
 				window.close();
 		}
-		if (Keyboard::isKeyPressed(Keyboard::Space)) {
-			if (shape.getFillColor() == Color::Red) {
-				shape.setFillColor(Color::Green);
-			}
+
+		if (Keyboard::isKeyPressed(Keyboard::W))
+		{
+			left.up(10);
 		}
-		if (Keyboard::isKeyPressed(Keyboard::LShift)) {
-			if (shape.getFillColor() == Color::Green) {
-				shape.setFillColor(Color::Red);
-			}
+
+		if (Keyboard::isKeyPressed(Keyboard::S))
+		{
+			left.down(10);
 		}
-		
-		if (Keyboard::isKeyPressed(Keyboard::Right)) {
-			if (!(shape.getPosition().x >= window.getSize().x-shape.getRadius()*2 )) {
-				x += 0.25;
-				shape.setPosition(x, y);
-			}
+
+		if (Keyboard::isKeyPressed(Keyboard::Up))
+		{
+			right.up(10);
 		}
-		if (Keyboard::isKeyPressed(Keyboard::Up)) {
-			if (!(shape.getPosition().y <= 0)) {
-				y -= 0.25;
-				shape.setPosition(x, y);
-			}
+
+		if (Keyboard::isKeyPressed(Keyboard::Down))
+		{
+			right.down(10);
 		}
-		if (Keyboard::isKeyPressed(Keyboard::Left)) {
-			if (!(shape.getPosition().x <= 0)) {
-				x -= 0.25;
-				shape.setPosition(x, y);
-			}
-		}
-		if (Keyboard::isKeyPressed(Keyboard::Down)) {
-			if (!(shape.getPosition().y >= window.getSize().y - shape.getRadius() * 2)) {
-				y += 0.25;
-				shape.setPosition(x, y);
-			}
-		}
+
 		window.clear();
-		window.draw(shape);
+		window.draw(left.rectangle);
+		window.draw(right.rectangle);
+		window.draw(ball.shape);
 		window.display();
 	}
 }

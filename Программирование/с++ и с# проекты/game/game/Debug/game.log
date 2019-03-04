@@ -1,3 +1,2 @@
-﻿  game.cpp
-c:\users\cefiro\desktop\game\game\game.cpp(23): warning C4244: инициализация: преобразование "sf::Int64" в "float", возможна потеря данных
+﻿  Player.cpp
   game.vcxproj -> C:\Users\cefiro\Desktop\game\Debug\game.exe
