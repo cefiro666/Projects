@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "Ball.h"
-#include "Player.h"
+
 
 Ball::Ball(float radius, float x_position, float y_position, Color color)
 {
@@ -13,47 +13,56 @@ Ball::Ball(float radius, float x_position, float y_position, Color color)
 	shape.setFillColor(color);
 }
 
-void Ball::x_offset(float x, RectangleShape& left, RectangleShape& right, float& left_width, float& left_height, float& right_width, float& right_height)
+void Ball::x_offset(float x, Player& left, Player& right)
 {
-	if (direction_right && shape.getPosition().x + radius * 2 <= 1000)
+	if (direction_right && shape.getPosition().x + radius * 2 <= 1100)
 	{
 		shape.move(x, 0);
 	}
 
-	if (direction_right && shape.getPosition().x + radius * 2 >= 1000)
+	if (direction_right && shape.getPosition().x + radius * 2 >= 1100)
 	{
 		shape.setPosition(1000 / 2, 600 / 2);
 		direction_right = false;
 		false_repulse = false;
+		left.score++;
+		start = false;
 	}
 
-	if (!direction_right && shape.getPosition().x >= 0)
+	if (!direction_right && shape.getPosition().x >= -100)
 	{
 		shape.move(-x, 0);
 	}
 
-	if (!direction_right && shape.getPosition().x <= 0)
+	if (!direction_right && shape.getPosition().x <= -100)
 	{
 		shape.setPosition(1000 / 2, 600 / 2);
 		direction_right = true;
 		false_repulse = false;
+		right.score++;
+		start = false;
 	}
+
 	//проверка на ложное отбитие
-	if ((shape.getPosition().x <= left.getPosition().x + left_width && 
-		!(shape.getPosition().y + radius >= left.getPosition().y && shape.getPosition().y + radius <= left.getPosition().y + left_height)) || 
-		(shape.getPosition().x + radius * 2 >= right.getPosition().x && !(shape.getPosition().y + radius >= right.getPosition().y && 
-			shape.getPosition().y + radius <= right.getPosition().y + right_height))) 
+	if ((shape.getPosition().x <= left.rectangle.getPosition().x + left.width && 
+		!(shape.getPosition().y + radius >= left.rectangle.getPosition().y && 
+			shape.getPosition().y + radius <= left.rectangle.getPosition().y + left.height)) ||
+		(shape.getPosition().x + radius * 2 >= right.rectangle.getPosition().x && 
+			!(shape.getPosition().y + radius >= right.rectangle.getPosition().y &&
+			shape.getPosition().y + radius <= right.rectangle.getPosition().y + right.height)))
 	{
 		false_repulse = true;
 	}
-	if (!false_repulse && shape.getPosition().x + (radius * 2) >= right.getPosition().x && 
-		shape.getPosition().y + radius >= right.getPosition().y && shape.getPosition().y + radius <= right.getPosition().y + right_height)
+	if (!false_repulse && shape.getPosition().x + (radius * 2) >= right.rectangle.getPosition().x &&
+		shape.getPosition().y + radius * 2 >= right.rectangle.getPosition().y &&
+		shape.getPosition().y <= right.rectangle.getPosition().y + right.height)
 	{
 		direction_right = false;
 	}
 
-	if (!false_repulse && shape.getPosition().x <= left.getPosition().x + left_width && 
-		shape.getPosition().y + radius >= left.getPosition().y && shape.getPosition().y + radius <= left.getPosition().y + left_height)
+	if (!false_repulse && shape.getPosition().x <= left.rectangle.getPosition().x + left.width &&
+		shape.getPosition().y + radius * 2 >= left.rectangle.getPosition().y && 
+		shape.getPosition().y <= left.rectangle.getPosition().y + left.height)
 	{
 		direction_right = true;
 	}

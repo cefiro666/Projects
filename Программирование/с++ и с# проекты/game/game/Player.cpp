@@ -1,16 +1,18 @@
 #include "pch.h"
 #include "Player.h"
 
-Player::Player(float width, float height, float x_position, float y_position, Color color)
+Player::Player(float width, float height, float x_position, float y_position, Color color, float x_text, float y_text)
 {
 	this->width = width;
 	this->height = height;
-	this->x_position = x_position;
-	this->y_position = y_position;
-	this->color = color;
 	rectangle.setSize(Vector2f(width, height));
 	rectangle.setPosition(x_position, y_position);
 	rectangle.setFillColor(color);
+
+	text_score.setCharacterSize(50);
+	font_text.loadFromFile("fonts/LCDM2B__.TTF");
+	text_score.setFont(font_text);
+	text_score.setPosition(x_text, y_text);
 }
 
 void Player::up(float y)

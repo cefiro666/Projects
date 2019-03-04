@@ -1,59 +1,65 @@
 ﻿#include "pch.h"
+#include "Screen.h"
 #include "Ball.h"
 #include "Player.h"
-#include <SFML/Graphics.hpp>
+#include <iostream>
 
 using namespace sf;
 using namespace std;
 
 int main()
-{
-	Player left(15, 150, 50, 200, Color::Green);
-	Player right(15, 150, 935, 200, Color::Blue);
+{	
+	
+	Screen screen(1000, 600, 4, 60, "Pong");
+	Player left(15, 80, 50, 200, Color::Green, 250, 50);
+	Player right(15, 80, 935, 200, Color::Blue, 720, 50);
 	Ball ball(10, 500, 300, Color::Red);
+	Clock clock;
 
-	ContextSettings settings;
-	settings.antialiasingLevel = 4;
-	RenderWindow window(VideoMode(1000, 600), "PONG", Style::Default, settings);
-	window.setFramerateLimit(60);
-
-	while (window.isOpen())
+	while (screen.window.isOpen())
 	{
+
+		left.string_score = to_string(left.score);
+		left.text_score.setString(left.string_score);
+
+		right.string_score = to_string(right.score);
+		right.text_score.setString(right.string_score);
+
 		Event event;
-		while (window.pollEvent(event))
+		while (screen.window.pollEvent(event))
 		{
 			if (event.type == Event::Closed)
-				window.close();
+				screen.window.close();
 		}
 
-		if (Keyboard::isKeyPressed(Keyboard::W))
+		if (Keyboard::isKeyPressed(Keyboard::W)) {left.up(10);}
+
+		if (Keyboard::isKeyPressed(Keyboard::S)) {left.down(10);}
+
+		if (Keyboard::isKeyPressed(Keyboard::Up)) {right.up(10);}
+
+		if (Keyboard::isKeyPressed(Keyboard::Down)) {right.down(10);}
+
+		Time elapsed1 = clock.getElapsedTime();
+		float time = elapsed1.asSeconds();
+		
+		if (time > 2) 
 		{
-			left.up(5);
+			ball.start = true;
+			clock.restart();
 		}
 
-		if (Keyboard::isKeyPressed(Keyboard::S))
-		{
-			left.down(5);
+		if (ball.start) {
+			ball.x_offset(10, left, right);
+			ball.y_offset(5);
 		}
-
-		if (Keyboard::isKeyPressed(Keyboard::Up))
-		{
-			right.up(5);
-		}
-
-		if (Keyboard::isKeyPressed(Keyboard::Down))
-		{
-			right.down(5);
-		}
-
-		ball.x_offset(2, left.rectangle , right.rectangle, left.width, left.height, right.width, right.height);
-		ball.y_offset(1);
-
-		cout << left.rectangle.getPosition().y << "   " << left.height << "   " << ball.shape.getPosition().y << endl;
-		window.clear();
-		window.draw(left.rectangle);
-		window.draw(right.rectangle);
-		window.draw(ball.shape);
-		window.display();
+		cout << ball.false_repulse << endl;
+		screen.window.clear();
+		screen.window.draw(left.rectangle);
+		screen.window.draw(left.text_score);
+		screen.window.draw(right.rectangle);
+		screen.window.draw(right.text_score);
+		screen.window.draw(ball.shape);
+		screen.window.display();
 	}
 }
