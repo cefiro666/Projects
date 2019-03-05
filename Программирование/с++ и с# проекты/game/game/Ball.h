@@ -9,12 +9,9 @@ using namespace std;
 class Player;
 class Ball
 {
-private:
-	CircleShape shape;
+private:	
 	float radius;
-	float x_position;
-	float y_position;
-	Color color;
+	CircleShape shape;
 
 	bool direction_down = true;
 	bool direction_right = true;
@@ -22,8 +19,7 @@ private:
 	bool start = false;
 
 public:
-
-	Ball(float radius, float x_position, float y_position, Color color);
+	Ball(float radius, float x_shape, float y_shape, Color color);
 	void x_offset(float x, Player& left, Player& right);
 	void y_offset(float y);
 	friend int main();

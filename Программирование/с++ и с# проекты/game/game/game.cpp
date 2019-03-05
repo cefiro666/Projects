@@ -9,12 +9,11 @@ using namespace std;
 
 int main()
 {	
-	
 	Screen screen(1000, 600, 4, 60, "Pong");
 	Player left(15, 80, 50, 200, Color::Green, 250, 50);
 	Player right(15, 80, 935, 200, Color::Blue, 720, 50);
 	Ball ball(10, 500, 300, Color::Red);
-	Clock clock;
+	Clock timer;
 
 	while (screen.window.isOpen())
 	{
@@ -32,21 +31,33 @@ int main()
 				screen.window.close();
 		}
 
-		if (Keyboard::isKeyPressed(Keyboard::W)) {left.up(10);}
+		if (Keyboard::isKeyPressed(Keyboard::W)) 
+		{
+			left.up(10);
+		}
 
-		if (Keyboard::isKeyPressed(Keyboard::S)) {left.down(10);}
+		if (Keyboard::isKeyPressed(Keyboard::S)) 
+		{
+			left.down(10);
+		}
 
-		if (Keyboard::isKeyPressed(Keyboard::Up)) {right.up(10);}
+		if (Keyboard::isKeyPressed(Keyboard::Up)) 
+		{
+			right.up(10);
+		}
 
-		if (Keyboard::isKeyPressed(Keyboard::Down)) {right.down(10);}
+		if (Keyboard::isKeyPressed(Keyboard::Down)) 
+		{
+			right.down(10);
+		}
 
-		Time elapsed1 = clock.getElapsedTime();
-		float time = elapsed1.asSeconds();
+		Time time = timer.getElapsedTime();
+		float pause = time.asSeconds();
 		
-		if (time > 2) 
+		if (pause > 2) 
 		{
 			ball.start = true;
-			clock.restart();
+			timer.restart();
 		}
 
 		if (ball.start) {
@@ -55,9 +66,9 @@ int main()
 		}
 		cout << ball.false_repulse << endl;
 		screen.window.clear();
-		screen.window.draw(left.rectangle);
+		screen.window.draw(left.platform);
 		screen.window.draw(left.text_score);
-		screen.window.draw(right.rectangle);
+		screen.window.draw(right.platform);
 		screen.window.draw(right.text_score);
 		screen.window.draw(ball.shape);
 		screen.window.display();

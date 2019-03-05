@@ -9,18 +9,18 @@ using namespace sf;
 
 class Player
 {
-private:
-	RectangleShape rectangle;
+private:	
 	float width;
 	float height;
+	RectangleShape platform;
 
-	int score = 0;
+	int score;
 	Text text_score;
 	Font font_text;
 	string string_score;
 	
 public:
-	Player(float width, float height, float x_position, float y_position, Color color, float x_text, float y_text);
+	Player(float width, float height, float x_platform, float y_platform, Color color, float x_text, float y_text);
 	void down(float y);
 	void up(float y);
 

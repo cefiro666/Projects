@@ -11,9 +11,6 @@ class Screen
 private:
 	int width;
 	int height;
-	int antialiasingLevel;
-	int framerateLimit;
-	string title;
 	RenderWindow window;
 
 public:

@@ -1,2 +1,6 @@
-﻿  game.cpp
+﻿  Ball.cpp
+  Player.cpp
+  Screen.cpp
+  game.cpp
+  Создание кода...
   game.vcxproj -> C:\Users\cefiro\Desktop\game\Debug\game.exe
