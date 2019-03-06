@@ -70,7 +70,7 @@ int main()
 		screen.window.draw(left.text_score);
 		screen.window.draw(right.platform);
 		screen.window.draw(right.text_score);
-		screen.window.draw(ball.shape);
+		screen.window.draw(ball.circle);
 		screen.window.display();
 	}
 }

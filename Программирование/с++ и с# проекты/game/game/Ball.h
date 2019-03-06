@@ -11,7 +11,7 @@ class Ball
 {
 private:	
 	float radius;
-	CircleShape shape;
+	CircleShape circle;
 
 	bool direction_down = true;
 	bool direction_right = true;
