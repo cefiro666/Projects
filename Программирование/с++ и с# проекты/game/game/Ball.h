@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <iostream>
 #include "Player.h"
 
@@ -16,6 +17,11 @@ private:
 	bool restart_timer;
 	float x_speed;
 	float y_speed;
+	Sound sound_repulse;
+	SoundBuffer buffer_repulse;
+	Sound sound_loos;
+	SoundBuffer buffer_loos;
+	float delta;
 
 public:
 	Ball(float radius, float x_shape, float y_shape, string path_texture);

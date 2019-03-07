@@ -12,7 +12,7 @@ int main()
 
 	//создание окна, параметры окна
 	ContextSettings settings;
-	settings.antialiasingLevel = 4;
+	settings.antialiasingLevel = 8;
 	RenderWindow window(VideoMode(1200, 710), " Pong", Style::Default, settings);
 	window.setFramerateLimit(60);
 	Image icon;
@@ -72,7 +72,7 @@ int main()
 			ball.y_offset();
 		}
 
-		cout << ball.circle.getPosition().y << "   " << ball.direction_down << endl;
+		cout << ball.y_speed << "   " << ball.direction_down << endl;
 
 		//отрисовка объектов
 		window.clear();	

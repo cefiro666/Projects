@@ -5,7 +5,7 @@ Player::Player(float width, float height, float x, float y, float x_text, float 
 {
 	this->width = width;
 	this->height = height;
-	this->score = 0;
+	score = 0;
 	string_score = to_string(score);
 	platform.setSize(Vector2f(this->width, this->height));
 	platform.setPosition(x, y);
