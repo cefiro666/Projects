@@ -1,76 +1,87 @@
 ﻿#include "pch.h"
-#include "Screen.h"
 #include "Ball.h"
 #include "Player.h"
-#include <iostream>
-
-using namespace sf;
-using namespace std;
 
 int main()
 {	
-	Screen screen(1000, 600, 4, 60, "Pong");
-	Player left(15, 80, 50, 200, Color::Green, 250, 50);
-	Player right(15, 80, 935, 200, Color::Blue, 720, 50);
-	Ball ball(10, 500, 300, Color::Red);
+	//объекты игры и таймер
+	Player left(45, 150, 50, 280, 255, 165, "images/left.png");
+	Player right(45, 150, 1105, 280, 770, 165, "images/right.png");
+	Ball ball(20, 580, 335, "images/ball.png");
 	Clock timer;
 
-	while (screen.window.isOpen())
-	{
+	//создание окна, параметры окна
+	ContextSettings settings;
+	settings.antialiasingLevel = 4;
+	RenderWindow window(VideoMode(1200, 710), " Pong", Style::Default, settings);
+	window.setFramerateLimit(60);
+	Image icon;
+	icon.loadFromFile("images/icon.png");
+	window.setIcon(32, 32, icon.getPixelsPtr());
 
-		left.string_score = to_string(left.score);
-		left.text_score.setString(left.string_score);
+	//задание текстуры для фона игрового поля
+	Texture texture;
+	texture.loadFromFile("images/background.jpg");
+	Sprite background;
+	background.setTexture(texture);
+	background.setPosition(0, 0);
 
-		right.string_score = to_string(right.score);
-		right.text_score.setString(right.string_score);
-
+	while (window.isOpen())
+	{	
+		//проверка событий окна
 		Event event;
-		while (screen.window.pollEvent(event))
+		while (window.pollEvent(event))
 		{
 			if (event.type == Event::Closed)
-				screen.window.close();
+				window.close();
+		}
+		
+		//установка и обновление счета игрока
+		left.text_score.setString(left.string_score);
+		right.text_score.setString(right.string_score);
+		if (left.score > 9) {
+			left.text_score.setPosition(160, 165);
+		}
+		if (right.score > 9) {
+			right.text_score.setPosition(700, 165);
 		}
 
-		if (Keyboard::isKeyPressed(Keyboard::W)) 
-		{
-			left.up(10);
-		}
-
-		if (Keyboard::isKeyPressed(Keyboard::S)) 
-		{
-			left.down(10);
-		}
-
-		if (Keyboard::isKeyPressed(Keyboard::Up)) 
-		{
-			right.up(10);
-		}
-
-		if (Keyboard::isKeyPressed(Keyboard::Down)) 
-		{
-			right.down(10);
-		}
-
+		//таймер паузы в 3 секунды при рестарте
 		Time time = timer.getElapsedTime();
 		float pause = time.asSeconds();
-		
-		if (pause > 2) 
+		if (ball.restart_timer)
+		{
+			timer.restart();
+			ball.restart_timer = false;
+		}
+		if (pause > 3)
 		{
 			ball.start = true;
 			timer.restart();
 		}
-
+		
+		//управление платформами
+		if (Keyboard::isKeyPressed(Keyboard::W)) {left.up();}
+		if (Keyboard::isKeyPressed(Keyboard::S)) {left.down();}
+		if (Keyboard::isKeyPressed(Keyboard::Up)) {right.up();}
+		if (Keyboard::isKeyPressed(Keyboard::Down)) {right.down();}
+		
+		//перемещение мяча
 		if (ball.start) {
-			ball.x_offset(10, left, right);
-			ball.y_offset(5);
+			ball.x_offset(left, right);
+			ball.y_offset();
 		}
-		cout << ball.false_repulse << endl;
-		screen.window.clear();
-		screen.window.draw(left.platform);
-		screen.window.draw(left.text_score);
-		screen.window.draw(right.platform);
-		screen.window.draw(right.text_score);
-		screen.window.draw(ball.circle);
-		screen.window.display();
+
+		cout << ball.circle.getPosition().y << "   " << ball.direction_down << endl;
+
+		//отрисовка объектов
+		window.clear();	
+		window.draw(background);
+		window.draw(left.text_score);
+		window.draw(right.text_score);	
+		window.draw(ball.circle);
+		window.draw(left.platform);
+		window.draw(right.platform);
+		window.display();
 	}
 }
