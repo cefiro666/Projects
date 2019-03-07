@@ -21,7 +21,9 @@ private:
 	SoundBuffer buffer_repulse;
 	Sound sound_loos;
 	SoundBuffer buffer_loos;
-	float delta;
+	float delta_y;
+	float delta_x;
+	int color;
 
 public:
 	Ball(float radius, float x_shape, float y_shape, string path_texture);

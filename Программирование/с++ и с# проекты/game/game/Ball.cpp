@@ -13,12 +13,14 @@ Ball::Ball(float radius, float x_shape, float y_shape, string path_texture)
 	false_repulse = false;
 	restart_timer = true;
 	start = false;
-	x_speed = 15;
+	x_speed = 10;
 	y_speed = 5;
-	buffer_repulse.loadFromFile("sounds/Tap_on_M-Sapphire-8662_hifi.wav");
+	buffer_repulse.loadFromFile("sounds/repulse.wav");
 	sound_repulse.setBuffer(buffer_repulse);
-	buffer_loos.loadFromFile("sounds/Switch19-intermed-5284_hifi.wav");
+	buffer_loos.loadFromFile("sounds/loos.wav");
 	sound_loos.setBuffer(buffer_loos);
+	color = 128;
+	circle.setFillColor(Color(color, 0, 255, 255));
 }
 
 void Ball::x_offset(Player& left, Player& right)
@@ -26,7 +28,9 @@ void Ball::x_offset(Player& left, Player& right)
 	//перемещение шарика вправо
 	if (direction_right && circle.getPosition().x + radius * 2 <= 1300)
 	{
-		circle.move((fabs(static_cast<double>(x_speed))), 0);
+		color += 2;
+		circle.move((fabs(static_cast<float>(x_speed))), 0);
+		circle.setFillColor(Color(color, 0, 255, 255));
 	}
 	
 	//уход шарика за правый край (гол)
@@ -40,14 +44,18 @@ void Ball::x_offset(Player& left, Player& right)
 		left.string_score = to_string(left.score);
 		start = false;
 		restart_timer = true;
-		x_speed = 15;
+		x_speed = 10;
 		y_speed = 5;
+		color = 128;
+		circle.setFillColor(Color(color, 0, 255, 255));
 	}
 	
 	//перемещение шарика влево
 	if (!direction_right && circle.getPosition().x >= -100)
 	{
-		circle.move(-(fabs(static_cast<double>(x_speed))), 0);
+		color -= 2;
+		circle.move(-(fabs(static_cast<float>(x_speed))), 0);
+		circle.setFillColor(Color(color, 0, 255, 255));
 	}
 	
 	//уход шарика за левый край (гол)
@@ -61,8 +69,10 @@ void Ball::x_offset(Player& left, Player& right)
 		right.string_score = to_string(right.score);
 		start = false;
 		restart_timer = true;
-		x_speed = 15;
+		x_speed = 10;
 		y_speed = 5;
+		color = 128;
+		circle.setFillColor(Color(color, 0, 255, 255));
 	}
 
 	//проверка на ложное отбитие (когда шарик отбивается, хотя залетел за платформу)
@@ -83,27 +93,31 @@ void Ball::x_offset(Player& left, Player& right)
 	{
 		if (direction_down && Keyboard::isKeyPressed(Keyboard::Down))
 		{
-			delta = 1 + rand() % 3;
-			y_speed += delta;
-			x_speed -= delta;
+			delta_y = static_cast<float>(1 + rand() % 3);
+			delta_x = static_cast<float>(0 + rand() % 2);
+			y_speed += delta_y;
+			x_speed += delta_x;
 		}
 		if (!direction_down && Keyboard::isKeyPressed(Keyboard::Down))
 		{
-			delta = 1 + rand() % 3;
-			y_speed -= delta;
-			x_speed += delta;
+			delta_y = static_cast<float>(1 + rand() % 3);
+			delta_x = static_cast<float>(0 + rand() % 2);
+			y_speed -= delta_y;
+			x_speed += delta_x;
 		}
 		if (direction_down && Keyboard::isKeyPressed(Keyboard::Up))
 		{
-			delta = 1 + rand() % 3;
-			y_speed -= delta;
-			x_speed += delta;
+			delta_y = static_cast<float>(1 + rand() % 3);
+			delta_x = static_cast<float>(0 + rand() % 2);
+			y_speed -= delta_y;
+			x_speed += delta_x;
 		}
 		if (!direction_down && Keyboard::isKeyPressed(Keyboard::Up))
 		{
-			delta = 1 + rand() % 3;
-			y_speed += delta;
-			x_speed -= delta;
+			delta_y = static_cast<float>(1 + rand() % 3);
+			delta_x = static_cast<float>(0 + rand() % 2);
+			y_speed += delta_y;
+			x_speed += delta_x;
 		}
 		sound_repulse.play();
 		direction_right = false;
@@ -116,27 +130,31 @@ void Ball::x_offset(Player& left, Player& right)
 	{
 		if (direction_down && Keyboard::isKeyPressed(Keyboard::S))
 		{
-			delta = 1 + rand() % 3;
-			y_speed += delta;
-			x_speed -= delta;
+			delta_y = static_cast<float>(1 + rand() % 3);
+			delta_x = static_cast<float>(0 + rand() % 2);
+			y_speed += delta_y;
+			x_speed += delta_x;
 		}
 		if (!direction_down && Keyboard::isKeyPressed(Keyboard::S))
 		{
-			delta = 1 + rand() % 3;
-			y_speed -= delta;
-			x_speed += delta;
+			delta_y = static_cast<float>(1 + rand() % 3);
+			delta_x = static_cast<float>(0 + rand() % 2);
+			y_speed -= delta_y;
+			x_speed += delta_x;
 		}
 		if (direction_down && Keyboard::isKeyPressed(Keyboard::W))
 		{
-			delta = 1 + rand() % 3;
-			y_speed -= delta;
-			x_speed += delta;
+			delta_y = static_cast<float>(1 + rand() % 3);
+			delta_x = static_cast<float>(0 + rand() % 2);
+			y_speed -= delta_y;
+			x_speed += delta_x;
 		}
 		if (!direction_down && Keyboard::isKeyPressed(Keyboard::W))
 		{
-			delta = 1 + rand() % 3;
-			y_speed += delta;
-			x_speed -= delta;
+			delta_y = static_cast<float>(1 + rand() % 3);
+			delta_x = static_cast<float>(0 + rand() % 2);
+			y_speed += delta_y;
+			x_speed += delta_x;
 		}
 		sound_repulse.play();
 		direction_right = true;
@@ -147,12 +165,12 @@ void Ball::y_offset()
 {
 	if (direction_down && circle.getPosition().y + (radius * 2) <= 710)
 	{
-		circle.move(0, (fabs(static_cast<double>(y_speed))));
+		circle.move(0, (fabs(static_cast<float>(y_speed))));
 	}
 
 	if (!direction_down && circle.getPosition().y >= 0)
 	{
-		circle.move(0, -(fabs(static_cast<double>(y_speed))));
+		circle.move(0, -(fabs(static_cast<float>(y_speed))));
 	}
 
 	if (circle.getPosition().y <= 0)

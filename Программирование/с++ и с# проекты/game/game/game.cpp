@@ -4,6 +4,31 @@
 
 int main()
 {	
+
+	Text text_score;
+	Font font_text;
+	font_text.loadFromFile("fonts/LCDM2B__.TTF");
+	text_score.setFont(font_text);
+	text_score.setCharacterSize(150);
+	text_score.setFillColor(Color(255, 255, 255, 150));
+	text_score.setPosition(150, 170);
+	text_score.setString("Pong Game");
+
+	Text player1;
+	player1.setFont(font_text);
+	player1.setCharacterSize(50);
+	player1.setFillColor(Color(255, 255, 255, 150));
+	player1.setPosition(750, 380);
+	player1.setString("1 player");
+
+	Text player2;
+	player2.setFont(font_text);
+	player2.setCharacterSize(50);
+	player2.setFillColor(Color(255, 255, 255, 150));
+	player2.setPosition(750, 450);
+	player2.setString("2 players");
+
+
 	//объекты игры и таймер
 	Player left(45, 150, 50, 280, 255, 165, "images/left.png");
 	Player right(45, 150, 1105, 280, 770, 165, "images/right.png");
@@ -12,7 +37,7 @@ int main()
 
 	//создание окна, параметры окна
 	ContextSettings settings;
-	settings.antialiasingLevel = 8;
+	settings.antialiasingLevel = 4;
 	RenderWindow window(VideoMode(1200, 710), " Pong", Style::Default, settings);
 	window.setFramerateLimit(60);
 	Image icon;
@@ -28,6 +53,20 @@ int main()
 
 	while (window.isOpen())
 	{	
+
+		player2.setFillColor(Color(255, 255, 255, 150));
+		if (Mouse::getPosition(window).x >= 750 && Mouse::getPosition(window).y >= 450 && Mouse::getPosition(window).x <= 990 && Mouse::getPosition(window).y <= 500)
+		{
+			player2.setFillColor(Color(255, 0, 255, 255));
+		}
+		player1.setFillColor(Color(255, 255, 255, 150));
+		if (Mouse::getPosition(window).x >= 750 && Mouse::getPosition(window).y >= 380 && Mouse::getPosition(window).x <= 960 && Mouse::getPosition(window).y <= 430)
+		{
+			player1.setFillColor(Color(255, 0, 255, 255));
+		}
+
+
+
 		//проверка событий окна
 		Event event;
 		while (window.pollEvent(event))
@@ -72,16 +111,20 @@ int main()
 			ball.y_offset();
 		}
 
-		cout << ball.y_speed << "   " << ball.direction_down << endl;
+		cout << ball.y_speed << "   " << ball.x_speed << "    "<< ball.delta_x << endl;
 
 		//отрисовка объектов
 		window.clear();	
 		window.draw(background);
+		/*window.draw(text_score);
+		window.draw(player1);
+		window.draw(player2);*/
 		window.draw(left.text_score);
 		window.draw(right.text_score);	
 		window.draw(ball.circle);
 		window.draw(left.platform);
 		window.draw(right.platform);
+
 		window.display();
 	}
 }
