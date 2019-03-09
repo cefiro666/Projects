@@ -46,14 +46,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="game.rc">
-      <Filter>Файлы ресурсов</Filter>
-    </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="icon1.ico">
-      <Filter>Файлы ресурсов</Filter>
-    </Image>
     <Image Include="images\icon.png">
       <Filter>Файлы ресурсов</Filter>
     </Image>

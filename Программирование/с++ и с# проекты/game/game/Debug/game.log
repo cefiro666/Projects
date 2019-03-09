@@ -1,3 +1,2 @@
-﻿  game.cpp
-c:\users\cefiro\desktop\game\game\textbox.h(15): warning C4244: аргумент: преобразование "float" в "unsigned int", возможна потеря данных
-  game.vcxproj -> C:\Users\cefiro\Desktop\game\Debug\game.exe
+﻿  LINK : не найден или не выполнена сборка D:\Projects\Программирование\с++ и с# проекты\game\Debug\game.exe при последней инкрементной компоновке; выполняется полная компоновка
+  game.vcxproj -> D:\Projects\Программирование\с++ и с# проекты\game\Debug\game.exe

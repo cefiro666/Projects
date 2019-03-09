@@ -177,11 +177,7 @@
     <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="game.rc" />
-  </ItemGroup>
-  <ItemGroup>
     <Image Include="..\..\Игра\images\icon.ico" />
-    <Image Include="icon1.ico" />
     <Image Include="images\icon.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
