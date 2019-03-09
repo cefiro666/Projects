@@ -136,6 +136,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
       <AdditionalLibraryDirectories>D:\Program Files\SFML-2.5.1-windows-vc15-32-bit\SFML-2.5.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sfml-graphics.lib;sfml-audio.lib;sfml-window.lib;sfml-system.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -161,6 +162,7 @@
     <ClInclude Include="Ball.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Textbox.h" />
   </ItemGroup>
   <ItemGroup>
@@ -173,6 +175,14 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Player.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="game.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\Игра\images\icon.ico" />
+    <Image Include="icon1.ico" />
+    <Image Include="images\icon.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
