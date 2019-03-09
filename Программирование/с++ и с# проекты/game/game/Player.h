@@ -1,4 +1,3 @@
-//класс игроков (параметры и управление платформ, очки)
 #pragma once
 
 #include <SFML/Graphics.hpp>
@@ -12,16 +11,15 @@ class Player
 private:	
 	float width;
 	float height;
+	float speed;
 	RectangleShape platform;
 	Texture texture;
 	int score;
-	Text text_score;
-	Font font_text;
-	string string_score;
-	float speed;
+	Font font;
+	Text t_score;
 
 public:
-	Player(float width, float height, float x, float y, float x_text, float y_text, string path_texture);
+	Player(float width, float height, float x, float y, float tx, float ty, string path_texture);
 	void down();
 	void up();
 	friend class Ball;

@@ -1,74 +1,65 @@
 #include "pch.h"
 #include "Ball.h"
 
-Ball::Ball(float radius, float x_shape, float y_shape, string path_texture)
+Ball::Ball(float radius, float x, float y, string path_texture)
 {
 	this->radius = radius;
 	circle.setRadius(this->radius);
-	circle.setPosition(x_shape, y_shape);
+	circle.setPosition(x, y);
 	texture.loadFromFile(path_texture);
 	circle.setTexture(&texture);
+	color = 128;
+	circle.setFillColor(Color(color, 0, 255, 255));
 	direction_down = true;
 	direction_right = true;
 	false_repulse = false;
-	restart_timer = true;
 	start = false;
 	x_speed = 10;
 	y_speed = 5;
-	buffer_repulse.loadFromFile("sounds/repulse.wav");
-	sound_repulse.setBuffer(buffer_repulse);
-	buffer_loos.loadFromFile("sounds/loos.wav");
-	sound_loos.setBuffer(buffer_loos);
-	color = 128;
-	circle.setFillColor(Color(color, 0, 255, 255));
 }
 
-void Ball::x_offset(Player& left, Player& right)
+void Ball::x_offset(Player& left, Player& right, Sound& loos, Sound& repulse)
 {
 	//перемещение шарика вправо
 	if (direction_right && circle.getPosition().x + radius * 2 <= 1300)
 	{
-		color += 2;
 		circle.move((fabs(static_cast<float>(x_speed))), 0);
+		color += 2;
+		circle.setFillColor(Color(color, 0, 255, 255));
+	}
+
+	//перемещение шарика влево
+	if (!direction_right && circle.getPosition().x >= -100)
+	{
+		circle.move(-(fabs(static_cast<float>(x_speed))), 0);
+		color -= 2;
 		circle.setFillColor(Color(color, 0, 255, 255));
 	}
 	
 	//уход шарика за правый край (гол)
 	if (direction_right && circle.getPosition().x + radius * 2 >= 1300)
 	{
-		sound_loos.play();
+		loos.play();
 		circle.setPosition(580, 335);
 		direction_right = false;
 		false_repulse = false;
+		start =	false;
 		left.score++;
-		left.string_score = to_string(left.score);
-		start = false;
-		restart_timer = true;
 		x_speed = 10;
 		y_speed = 5;
 		color = 128;
-		circle.setFillColor(Color(color, 0, 255, 255));
-	}
-	
-	//перемещение шарика влево
-	if (!direction_right && circle.getPosition().x >= -100)
-	{
-		color -= 2;
-		circle.move(-(fabs(static_cast<float>(x_speed))), 0);
-		circle.setFillColor(Color(color, 0, 255, 255));
+		circle.setFillColor(Color(color, 0, 255, 255));	
 	}
 	
 	//уход шарика за левый край (гол)
 	if (!direction_right && circle.getPosition().x <= -100)
 	{
-		sound_loos.play();
+		loos.play();
 		circle.setPosition(580, 335);
 		direction_right = true;
 		false_repulse = false;
-		right.score++;
-		right.string_score = to_string(right.score);
 		start = false;
-		restart_timer = true;
+		right.score++;
 		x_speed = 10;
 		y_speed = 5;
 		color = 128;
@@ -91,6 +82,7 @@ void Ball::x_offset(Player& left, Player& right)
 		circle.getPosition().y + (radius * 2) + 10 >= right.platform.getPosition().y &&
 		circle.getPosition().y - 10 <= right.platform.getPosition().y + right.height)
 	{
+		//изменение скоростей по x и y в зависимости от движения платформы во время удара
 		if (direction_down && Keyboard::isKeyPressed(Keyboard::Down))
 		{
 			delta_y = static_cast<float>(1 + rand() % 3);
@@ -119,7 +111,7 @@ void Ball::x_offset(Player& left, Player& right)
 			y_speed += delta_y;
 			x_speed += delta_x;
 		}
-		sound_repulse.play();
+		repulse.play();
 		direction_right = false;
 	}
 
@@ -128,6 +120,7 @@ void Ball::x_offset(Player& left, Player& right)
 		circle.getPosition().y + (radius * 2) + 10 >= left.platform.getPosition().y &&
 		circle.getPosition().y - 10 <= left.platform.getPosition().y + left.height)
 	{
+		//изменение скоростей по x и y в зависимости от движения платформы во время удара
 		if (direction_down && Keyboard::isKeyPressed(Keyboard::S))
 		{
 			delta_y = static_cast<float>(1 + rand() % 3);
@@ -156,38 +149,37 @@ void Ball::x_offset(Player& left, Player& right)
 			y_speed += delta_y;
 			x_speed += delta_x;
 		}
-		sound_repulse.play();
+		repulse.play();
 		direction_right = true;
 	}
 }
 
-void Ball::y_offset()
+//смещение по y 
+void Ball::y_offset(Sound& repulse)
 {
+	//перемещение вниз
 	if (direction_down && circle.getPosition().y + (radius * 2) <= 710)
 	{
 		circle.move(0, (fabs(static_cast<float>(y_speed))));
 	}
 
+	//перемещение вверх
 	if (!direction_down && circle.getPosition().y >= 0)
 	{
 		circle.move(0, -(fabs(static_cast<float>(y_speed))));
 	}
 
+	//отскок от верха
 	if (circle.getPosition().y <= 0)
 	{
-		if (!false_repulse)
-		{
-			sound_repulse.play();
-		}
+		if (!false_repulse) repulse.play();
 		direction_down = true;
 	}
 
+	//отскок от низа
 	if (circle.getPosition().y + (radius * 2) >= 710)
 	{
-		if (!false_repulse)
-		{
-			sound_repulse.play();
-		}
+		if (!false_repulse) repulse.play();
 		direction_down = false;
 	}
 }

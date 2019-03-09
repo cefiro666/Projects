@@ -1,0 +1,8 @@
+﻿  game.cpp
+c:\users\cefiro\desktop\game\game\textbox.h(15): warning C4244: аргумент: преобразование "float" в "unsigned int", возможна потеря данных
+game.obj : error LNK2001: неразрешенный внешний символ ""__declspec(dllimport) public: __thiscall sf::SoundBuffer::SoundBuffer(void)" (__imp_??0SoundBuffer@sf@@QAE@XZ)"
+game.obj : error LNK2001: неразрешенный внешний символ ""__declspec(dllimport) public: __thiscall sf::SoundBuffer::~SoundBuffer(void)" (__imp_??1SoundBuffer@sf@@QAE@XZ)"
+game.obj : error LNK2001: неразрешенный внешний символ ""__declspec(dllimport) public: bool __thiscall sf::SoundBuffer::loadFromFile(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (__imp_?loadFromFile@SoundBuffer@sf@@QAE_NABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)"
+game.obj : error LNK2001: неразрешенный внешний символ ""__declspec(dllimport) public: __thiscall sf::Sound::Sound(class sf::SoundBuffer const &)" (__imp_??0Sound@sf@@QAE@ABVSoundBuffer@1@@Z)"
+game.obj : error LNK2001: неразрешенный внешний символ ""__declspec(dllimport) public: virtual __thiscall sf::Sound::~Sound(void)" (__imp_??1Sound@sf@@UAE@XZ)"
+C:\Users\cefiro\Desktop\game\Release\game.exe : fatal error LNK1120: неразрешенных внешних элементов: 5
