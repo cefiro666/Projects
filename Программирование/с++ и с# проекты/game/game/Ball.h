@@ -1,9 +1,9 @@
-#pragma once
+п»ї#pragma once
 
 #include <SFML/Audio.hpp>
 #include "Player.h"
 
-//класс мяча (движение, голы, звуки)
+//РєР»Р°СЃСЃ РјСЏС‡Р° (РґРІРёР¶РµРЅРёРµ, РіРѕР»С‹, Р·РІСѓРєРё)
 class Ball
 {
 private:	

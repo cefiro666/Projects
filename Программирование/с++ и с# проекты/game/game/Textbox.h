@@ -1,6 +1,6 @@
-#pragma once
+п»ї#pragma once
 
-//класс текстовых боксов
+//РєР»Р°СЃСЃ С‚РµРєСЃС‚РѕРІС‹С… Р±РѕРєСЃРѕРІ
 class Textbox 
 {
 private:

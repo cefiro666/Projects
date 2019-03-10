@@ -1,4 +1,4 @@
-#include "pch.h"
+п»ї#include "pch.h"
 #include "Ball.h"
 
 Ball::Ball(float radius, float x, float y, string path_texture)
@@ -20,7 +20,7 @@ Ball::Ball(float radius, float x, float y, string path_texture)
 
 void Ball::x_offset(Player& left, Player& right, Sound& loos, Sound& repulse)
 {
-	//перемещение шарика вправо
+	//РїРµСЂРµРјРµС‰РµРЅРёРµ С€Р°СЂРёРєР° РІРїСЂР°РІРѕ
 	if (direction_right && circle.getPosition().x + radius * 2 <= 1300)
 	{
 		circle.move((fabs(static_cast<float>(x_speed))), 0);
@@ -28,7 +28,7 @@ void Ball::x_offset(Player& left, Player& right, Sound& loos, Sound& repulse)
 		circle.setFillColor(Color(color, 0, 255, 255));
 	}
 
-	//перемещение шарика влево
+	//РїРµСЂРµРјРµС‰РµРЅРёРµ С€Р°СЂРёРєР° РІР»РµРІРѕ
 	if (!direction_right && circle.getPosition().x >= -100)
 	{
 		circle.move(-(fabs(static_cast<float>(x_speed))), 0);
@@ -36,7 +36,7 @@ void Ball::x_offset(Player& left, Player& right, Sound& loos, Sound& repulse)
 		circle.setFillColor(Color(color, 0, 255, 255));
 	}
 	
-	//уход шарика за правый край (гол)
+	//СѓС…РѕРґ С€Р°СЂРёРєР° Р·Р° РїСЂР°РІС‹Р№ РєСЂР°Р№ (РіРѕР»)
 	if (direction_right && circle.getPosition().x + radius * 2 >= 1300)
 	{
 		loos.play();
@@ -51,7 +51,7 @@ void Ball::x_offset(Player& left, Player& right, Sound& loos, Sound& repulse)
 		circle.setFillColor(Color(color, 0, 255, 255));	
 	}
 	
-	//уход шарика за левый край (гол)
+	//СѓС…РѕРґ С€Р°СЂРёРєР° Р·Р° Р»РµРІС‹Р№ РєСЂР°Р№ (РіРѕР»)
 	if (!direction_right && circle.getPosition().x <= -100)
 	{
 		loos.play();
@@ -66,7 +66,7 @@ void Ball::x_offset(Player& left, Player& right, Sound& loos, Sound& repulse)
 		circle.setFillColor(Color(color, 0, 255, 255));
 	}
 
-	//проверка на ложное отбитие (когда шарик отбивается, хотя залетел за платформу)
+	//РїСЂРѕРІРµСЂРєР° РЅР° Р»РѕР¶РЅРѕРµ РѕС‚Р±РёС‚РёРµ (РєРѕРіРґР° С€Р°СЂРёРє РѕС‚Р±РёРІР°РµС‚СЃСЏ, С…РѕС‚СЏ Р·Р°Р»РµС‚РµР» Р·Р° РїР»Р°С‚С„РѕСЂРјСѓ)
 	if ((circle.getPosition().x <= left.platform.getPosition().x + left.width &&
 		!(circle.getPosition().y + radius * 2 + 10 >= left.platform.getPosition().y &&
 		circle.getPosition().y - 10 <= left.platform.getPosition().y + left.height)) ||
@@ -77,12 +77,12 @@ void Ball::x_offset(Player& left, Player& right, Sound& loos, Sound& repulse)
 		false_repulse = true;
 	}
 
-	//отбитие правой платформы
+	//РѕС‚Р±РёС‚РёРµ РїСЂР°РІРѕР№ РїР»Р°С‚С„РѕСЂРјС‹
 	if (!false_repulse && circle.getPosition().x + (radius * 2) >= right.platform.getPosition().x &&
 		circle.getPosition().y + (radius * 2) + 10 >= right.platform.getPosition().y &&
 		circle.getPosition().y - 10 <= right.platform.getPosition().y + right.height)
 	{
-		//изменение скоростей по x и y в зависимости от движения платформы во время удара
+		//РёР·РјРµРЅРµРЅРёРµ СЃРєРѕСЂРѕСЃС‚РµР№ РїРѕ x Рё y РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ РґРІРёР¶РµРЅРёСЏ РїР»Р°С‚С„РѕСЂРјС‹ РІРѕ РІСЂРµРјСЏ СѓРґР°СЂР°
 		if (direction_down && Keyboard::isKeyPressed(Keyboard::Down))
 		{
 			delta_y = static_cast<float>(1 + rand() % 3);
@@ -115,12 +115,12 @@ void Ball::x_offset(Player& left, Player& right, Sound& loos, Sound& repulse)
 		direction_right = false;
 	}
 
-	//отбитие левой платформы
+	//РѕС‚Р±РёС‚РёРµ Р»РµРІРѕР№ РїР»Р°С‚С„РѕСЂРјС‹
 	if (!false_repulse && circle.getPosition().x <= left.platform.getPosition().x + left.width &&
 		circle.getPosition().y + (radius * 2) + 10 >= left.platform.getPosition().y &&
 		circle.getPosition().y - 10 <= left.platform.getPosition().y + left.height)
 	{
-		//изменение скоростей по x и y в зависимости от движения платформы во время удара
+		//РёР·РјРµРЅРµРЅРёРµ СЃРєРѕСЂРѕСЃС‚РµР№ РїРѕ x Рё y РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ РґРІРёР¶РµРЅРёСЏ РїР»Р°С‚С„РѕСЂРјС‹ РІРѕ РІСЂРµРјСЏ СѓРґР°СЂР°
 		if (direction_down && Keyboard::isKeyPressed(Keyboard::S))
 		{
 			delta_y = static_cast<float>(1 + rand() % 3);
@@ -154,29 +154,29 @@ void Ball::x_offset(Player& left, Player& right, Sound& loos, Sound& repulse)
 	}
 }
 
-//смещение по y 
+//СЃРјРµС‰РµРЅРёРµ РїРѕ y 
 void Ball::y_offset(Sound& repulse)
 {
-	//перемещение вниз
+	//РїРµСЂРµРјРµС‰РµРЅРёРµ РІРЅРёР·
 	if (direction_down && circle.getPosition().y + (radius * 2) <= 710)
 	{
 		circle.move(0, (fabs(static_cast<float>(y_speed))));
 	}
 
-	//перемещение вверх
+	//РїРµСЂРµРјРµС‰РµРЅРёРµ РІРІРµСЂС…
 	if (!direction_down && circle.getPosition().y >= 0)
 	{
 		circle.move(0, -(fabs(static_cast<float>(y_speed))));
 	}
 
-	//отскок от верха
+	//РѕС‚СЃРєРѕРє РѕС‚ РІРµСЂС…Р°
 	if (circle.getPosition().y <= 0)
 	{
 		if (!false_repulse) repulse.play();
 		direction_down = true;
 	}
 
-	//отскок от низа
+	//РѕС‚СЃРєРѕРє РѕС‚ РЅРёР·Р°
 	if (circle.getPosition().y + (radius * 2) >= 710)
 	{
 		if (!false_repulse) repulse.play();

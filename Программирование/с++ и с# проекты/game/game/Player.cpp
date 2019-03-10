@@ -1,7 +1,7 @@
-#include "pch.h"
+ï»¿#include "pch.h"
 #include "Player.h"
 
-//êëàññ ïëàòôîðì è òåêñòîâûõ ïîëåé ñ÷åòà èãðîêîâ
+//ÐºÐ»Ð°ÑÑ Ð¿Ð»Ð°Ñ‚Ñ„Ð¾Ñ€Ð¼ Ð¸ Ñ‚ÐµÐºÑÑ‚Ð¾Ð²Ñ‹Ñ… Ð¿Ð¾Ð»ÐµÐ¹ ÑÑ‡ÐµÑ‚Ð° Ð¸Ð³Ñ€Ð¾ÐºÐ¾Ð²
 Player::Player(float width, float height, float x, float y, float tx, float ty, string path_texture)
 {
 	this->width = width;
@@ -20,7 +20,7 @@ Player::Player(float width, float height, float x, float y, float tx, float ty, 
 	t_score.setPosition(tx, ty);
 }
 
-//ïåðåìåùåíèÿ ïëàòôîðì
+//Ð¿ÐµÑ€ÐµÐ¼ÐµÑ‰ÐµÐ½Ð¸Ñ Ð¿Ð»Ð°Ñ‚Ñ„Ð¾Ñ€Ð¼
 void Player::up()
 {
 	if (platform.getPosition().y >= 15) platform.move(0, -speed);
