@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-//класс текстовых боксов
+//класс текстовых блоков
 class Textbox 
 {
 private:
@@ -8,7 +8,7 @@ private:
 	Font font;
 
 public:
-	Textbox(float size, float x, float y, string content)
+	Textbox(int size, float x, float y, string content)
 	{
 		font.loadFromFile("fonts/LCDM2B__.TTF");
 		text.setFont(font);

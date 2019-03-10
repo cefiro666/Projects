@@ -1,7 +1,6 @@
 ﻿#include "pch.h"
 #include "Player.h"
 
-//класс платформ и текстовых полей счета игроков
 Player::Player(float width, float height, float x, float y, float tx, float ty, string path_texture)
 {
 	this->width = width;

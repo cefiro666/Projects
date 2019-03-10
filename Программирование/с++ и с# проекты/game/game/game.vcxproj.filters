@@ -46,10 +46,12 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="images\icon.png">
+    <ResourceCompile Include="game.rc">
       <Filter>Файлы ресурсов</Filter>
-    </Image>
-    <Image Include="..\..\Игра\images\icon.ico">
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="images\icon.ico">
       <Filter>Файлы ресурсов</Filter>
     </Image>
   </ItemGroup>

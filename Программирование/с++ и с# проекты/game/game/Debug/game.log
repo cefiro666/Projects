@@ -1,2 +1,8 @@
-﻿  LINK : не найден или не выполнена сборка D:\Projects\Программирование\с++ и с# проекты\game\Debug\game.exe при последней инкрементной компоновке; выполняется полная компоновка
-  game.vcxproj -> D:\Projects\Программирование\с++ и с# проекты\game\Debug\game.exe
+﻿  pch.cpp
+  Ball.cpp
+  game.cpp
+c:\users\cefiro\desktop\projects\программирование\с++ и с# проекты\game\game\textbox.h(15): warning C4244: аргумент: преобразование "float" в "unsigned int", возможна потеря данных
+  Player.cpp
+  Создание кода...
+  LINK : не найден или не выполнена сборка C:\Users\cefiro\Desktop\Projects\Программирование\с++ и с# проекты\game\Debug\game.exe при последней инкрементной компоновке; выполняется полная компоновка
+  game.vcxproj -> C:\Users\cefiro\Desktop\Projects\Программирование\с++ и с# проекты\game\Debug\game.exe

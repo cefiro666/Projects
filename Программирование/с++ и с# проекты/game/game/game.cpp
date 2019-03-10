@@ -62,12 +62,12 @@ int main()
 	//==========================================================
 	//булевы переменные
 
-	bool start_scene = true;		// активность стартовая сцена
-	bool guide_scene = false;		// активность справочная сцена
-	bool game_scene = false;		// активность игровая сцена
-	bool visible_start = true;		// видимость надписи Textbox press_start
-	bool restart_timer = false;		// активность сброс таймера
-	bool pause = false;				// активность пауза
+	bool start_scene = true;	// активность стартовая сцена
+	bool guide_scene = false;	// активность справочная сцена
+	bool game_scene = false;	// активность игровая сцена
+	bool visible_start = true;	// видимость надписи Textbox press_start
+	bool restart_timer = false;	// активность сброс таймера
+	bool pause = false;			// активность пауза
 
 	//==========================================================
 	//главный игровой цикл
@@ -158,14 +158,14 @@ int main()
 			//таймер паузы в 2 секунды перед началом раунда
 			Time time = timer.getElapsedTime();
 			float delay = time.asSeconds();
-			if (!restart_timer && !ball.start)
+			if (!restart_timer && !ball.motion)
 			{
 				timer.restart();
 				restart_timer = true;
 			}
 			if (delay > 2)
 			{
-				if (!ball.start) ball.start = true;
+				if (!ball.motion) ball.motion = true;
 				timer.restart();
 				restart_timer = false;
 			}
@@ -179,7 +179,7 @@ int main()
 			}
 
 			//перемещение мяча
-			if (ball.start && !pause)
+			if (ball.motion && !pause)
 			{
 				ball.x_offset(left, right, loos, repulse);
 				ball.y_offset(repulse);

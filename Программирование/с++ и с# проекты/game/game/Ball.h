@@ -16,7 +16,7 @@ private:
 	bool direction_down;
 	bool direction_right;
 	bool false_repulse;
-	bool start;
+	bool motion;
 	CircleShape circle;
 	Texture texture;
 

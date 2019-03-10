@@ -6,6 +6,7 @@
 using namespace std;
 using namespace sf;
 
+//класс платформ и текстовых полей счета игроков
 class Player
 {
 private:	

@@ -1,7 +1,7 @@
-﻿  pch.cpp
-  Ball.cpp
-  game.cpp
-d:\projects\программирование\с++ и с# проекты\game\game\textbox.h(15): warning C4244: аргумент: преобразование "float" в "unsigned int", возможна потеря данных
-  Player.cpp
-  
-game.rc(54): error RC2135: file not found: C:\Users\cefiro\Desktop\
+﻿  Ball.cpp
+  Создание кода
+  1 of 85 functions ( 1.2%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    1 functions had inline decision re-evaluated but remain unchanged
+  Создание кода завершено
+  game.vcxproj -> C:\Users\cefiro\Desktop\Projects\Программирование\с++ и с# проекты\game\Release\game.exe

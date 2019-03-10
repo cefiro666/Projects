@@ -13,7 +13,7 @@ Ball::Ball(float radius, float x, float y, string path_texture)
 	direction_down = true;
 	direction_right = true;
 	false_repulse = false;
-	start = false;
+	motion = false;
 	x_speed = 10;
 	y_speed = 5;
 }
@@ -23,7 +23,7 @@ void Ball::x_offset(Player& left, Player& right, Sound& loos, Sound& repulse)
 	//перемещение шарика вправо
 	if (direction_right && circle.getPosition().x + radius * 2 <= 1300)
 	{
-		circle.move((fabs(static_cast<float>(x_speed))), 0);
+		circle.move(fabs(x_speed), 0);
 		color += 2;
 		circle.setFillColor(Color(color, 0, 255, 255));
 	}
@@ -31,7 +31,7 @@ void Ball::x_offset(Player& left, Player& right, Sound& loos, Sound& repulse)
 	//перемещение шарика влево
 	if (!direction_right && circle.getPosition().x >= -100)
 	{
-		circle.move(-(fabs(static_cast<float>(x_speed))), 0);
+		circle.move(-fabs(x_speed), 0);
 		color -= 2;
 		circle.setFillColor(Color(color, 0, 255, 255));
 	}
@@ -43,7 +43,7 @@ void Ball::x_offset(Player& left, Player& right, Sound& loos, Sound& repulse)
 		circle.setPosition(580, 335);
 		direction_right = false;
 		false_repulse = false;
-		start =	false;
+		motion = false;
 		left.score++;
 		x_speed = 10;
 		y_speed = 5;
@@ -58,7 +58,7 @@ void Ball::x_offset(Player& left, Player& right, Sound& loos, Sound& repulse)
 		circle.setPosition(580, 335);
 		direction_right = true;
 		false_repulse = false;
-		start = false;
+		motion = false;
 		right.score++;
 		x_speed = 10;
 		y_speed = 5;
@@ -160,13 +160,13 @@ void Ball::y_offset(Sound& repulse)
 	//перемещение вниз
 	if (direction_down && circle.getPosition().y + (radius * 2) <= 710)
 	{
-		circle.move(0, (fabs(static_cast<float>(y_speed))));
+		circle.move(0, fabs(y_speed));
 	}
 
 	//перемещение вверх
 	if (!direction_down && circle.getPosition().y >= 0)
 	{
-		circle.move(0, -(fabs(static_cast<float>(y_speed))));
+		circle.move(0, -fabs(y_speed));
 	}
 
 	//отскок от верха
