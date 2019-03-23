@@ -16,7 +16,10 @@ using namespace std;
 // Для каждого двигателя своя член-функция симуляции
 class Engine
 {
-private:
+public:
+
+	// Доступные параметры двигателя
+	// ============================================================
 	// тип двигателя
 	int type;
 
@@ -69,8 +72,10 @@ private:
 	// скорости вращения вала    
 	array<float, 6> M_arr;
 	array<float, 6> rotat_speed_arr;
+	
+	// Функции класса
+	// ============================================================
 
-public:
 	// запуск двигателя
 	void start();
 
@@ -79,7 +84,4 @@ public:
 
 	// симуляция двигателя внутреннего сгорания
 	void int_comb_simulation();
-
-	friend int main();
-	friend float overheating_time(float temp, Engine& engine);
 };
