@@ -1,14 +1,14 @@
-#include "pch.h"
+п»ї#include "pch.h"
 #include "Engine.h"
 
 void Engine::start()
 {
 	condition = true;
-	// запуск симуляции в зависимости от типа двигателя
+	// Р·Р°РїСѓСЃРє СЃРёРјСѓР»СЏС†РёРё РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ С‚РёРїР° РґРІРёРіР°С‚РµР»СЏ
 	switch (type)
 	{
 		case 1:
-			cout << " Тип тестируемого двигателя - ДВС\n";
+			cout << " РўРёРї С‚РµСЃС‚РёСЂСѓРµРјРѕРіРѕ РґРІРёРіР°С‚РµР»СЏ - Р”Р’РЎ\n";
 			thread simulation(&Engine::int_comb_simulation, this);
 			simulation.detach();
 			break;
@@ -19,11 +19,11 @@ void Engine::stop() { condition = false; }
 
 void Engine::int_comb_simulation()
 {
-	// пока двигатель работает
+	// РїРѕРєР° РґРІРёРіР°С‚РµР»СЊ СЂР°Р±РѕС‚Р°РµС‚
 	while (condition)
 	{	
-		// расчет крутящего момента в зависимости от текущей скорости
-		// и графика зависимости
+		// СЂР°СЃС‡РµС‚ РєСЂСѓС‚СЏС‰РµРіРѕ РјРѕРјРµРЅС‚Р° РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ С‚РµРєСѓС‰РµР№ СЃРєРѕСЂРѕСЃС‚Рё
+		// Рё РіСЂР°С„РёРєР° Р·Р°РІРёСЃРёРјРѕСЃС‚Рё
 		if ((rotat_speed_arr[0] <= rotat_speed)
 			&& (rotat_speed <= rotat_speed_arr[1]))
 		{
@@ -73,12 +73,12 @@ void Engine::int_comb_simulation()
 				/ (rotat_speed_arr[5] - rotat_speed_arr[4])
 				* rotat_speed_arr[5];
 		}
-		// расчет параметров
+		// СЂР°СЃС‡РµС‚ РїР°СЂР°РјРµС‚СЂРѕРІ
 		a = M / I;
 		heat_rate = M * coef_M + rotat_speed * rotat_speed * coef_rotat_speed;
 		cool_rate = C * (medium_temp - engine_temp);
 		engine_temp += heat_rate + cool_rate;
-		// время расчета параметров за одну итерацию - 0.01 секунда
+		// РІСЂРµРјСЏ СЂР°СЃС‡РµС‚Р° РїР°СЂР°РјРµС‚СЂРѕРІ Р·Р° РѕРґРЅСѓ РёС‚РµСЂР°С†РёСЋ - 0.01 СЃРµРєСѓРЅРґР°
 		rotat_speed += a / 100;
 		engine_time += 0.01F;
 	}
