@@ -19,8 +19,11 @@ void Engine::stop() { condition = false; }
 
 void Engine::int_comb_simulation()
 {
+	// пока двигатель работает
 	while (condition)
-	{
+	{	
+		// расчет крутящего момента в зависимости от текущей скорости
+		// и графика зависимости
 		if ((rotat_speed_arr[0] <= rotat_speed)
 			&& (rotat_speed <= rotat_speed_arr[1]))
 		{
@@ -70,11 +73,12 @@ void Engine::int_comb_simulation()
 				/ (rotat_speed_arr[5] - rotat_speed_arr[4])
 				* rotat_speed_arr[5];
 		}
-
+		// расчет параметров
 		a = M / I;
 		heat_rate = M * coef_M + rotat_speed * rotat_speed * coef_rotat_speed;
 		cool_rate = C * (medium_temp - engine_temp);
 		engine_temp += heat_rate + cool_rate;
+		// время расчета параметров за одну итерацию - 0.01 секунда
 		rotat_speed += a / 100;
 		engine_time += 0.01F;
 	}

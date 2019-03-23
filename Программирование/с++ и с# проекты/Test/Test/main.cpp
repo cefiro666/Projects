@@ -1,5 +1,4 @@
 ﻿#include "pch.h"
-#include <iostream>
 #include <iomanip>
 #include "Test.h"
 #include "Engine.h"
@@ -19,6 +18,7 @@ int main()
 	cout << " Введите температуру окружающей\n среды (в градусах цельсия): ";
 	float temp;
 	cin >> temp;
+
 	// создаем двигатель
 	Engine int_comb_engine;
 
@@ -55,7 +55,6 @@ int main()
 	// исправить код в классе Engine(изменить массив и рассчет М))
 	int_comb_engine.M_arr =           { 20, 75, 100, 105,  75,  0 };
 	int_comb_engine.rotat_speed_arr = { 0, 75, 150, 200, 250, 300 };
-
 	// ======================================================
 
 	// запуск теста
@@ -73,7 +72,7 @@ int main()
 	}
 
 	// критичиские данные
-	cout << " Температура двигателя в момент остановки " << fixed
+	cout << "\n Температура двигателя в момент остановки " << fixed
 		<< setprecision(1) << int_comb_engine.engine_temp << " градусов\n";
 
 	cout << " Скорость вращения вала в момент остановки " << fixed
