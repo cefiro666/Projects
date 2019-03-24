@@ -3,19 +3,18 @@
 
 using namespace std;
 
-float overheating_time(float temp, Engine& engine)
+float overheating_time(Engine& engine)
 {
-	cout << "\n Запущен тест на перегрев...\n";
-	// установка температуры окружающей среды
-	engine.medium_temp = temp;
+	cout << "\n -Запущен тест на перегрев...\n";
 	// запуск двигателя
 	engine.start();
 	// пока работает двигатель
 	while (engine.condition)
 	{
-		// если перегрев или развита максимальная скорость - остановить двигатель
+		// если перегрев или развита максимальная 
+		// скорость - остановить двигатель
 		if (engine.engine_temp >= engine.temp_overheat
-			|| engine.rotat_speed > (engine.rotat_speed_arr[5] - 1))
+			|| engine.rotat_speed >= (engine.rotat_speed_arr[5] - 0.02))
 		{
 			engine.stop();
 		}

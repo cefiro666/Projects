@@ -8,7 +8,7 @@ void Engine::start()
 	switch (type)
 	{
 		case 1:
-			cout << " Тип тестируемого двигателя - ДВС\n";
+			cout << " -Тип тестируемого двигателя - ДВС\n";
 			thread simulation(&Engine::int_comb_simulation, this);
 			simulation.detach();
 			break;

@@ -27,6 +27,12 @@ int main()
 	// установка типа двигателя (внутр. сгорания)
 	int_comb_engine.type = 1;
 
+	// температура окружающей среды
+	int_comb_engine.medium_temp = temp;
+
+	// температура двигателя (равна температуре окр. среды)
+	int_comb_engine.engine_temp = int_comb_engine.medium_temp;
+
 	// коэффициент зависимости скорости нагрева от крутящего момента
 	int_comb_engine.coef_M = 0.01F;
 
@@ -59,7 +65,8 @@ int main()
 
 	// запуск теста
 	// ======================================================
-	float time = overheating_time(temp, int_comb_engine);
+	// узнаем время работы двигателя до остановки
+	float time = overheating_time(int_comb_engine);
 	// по какой причине остановка двигателя
 	if (int_comb_engine.engine_temp >= int_comb_engine.temp_overheat)
 	{
@@ -71,11 +78,11 @@ int main()
 			<< time << " сек и достиг максимальной\n скорости вращения вала\n";
 	}
 
-	// критичиские данные
-	cout << "\n Температура двигателя в момент остановки " << fixed
+	// критичиские данные во время остановки
+	cout << "\n Температура двигателя в момент остановки: " << fixed
 		<< setprecision(1) << int_comb_engine.engine_temp << " градусов\n";
 
-	cout << " Скорость вращения вала в момент остановки " << fixed
+	cout << " Скорость вращения вала в момент остановки: " << fixed
 		<< setprecision(1) << int_comb_engine.rotat_speed << " радиан/сек\n";
 
 	cout << "\n Работа программы завершена. Нажмите Enter для выхода...";

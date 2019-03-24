@@ -7,4 +7,4 @@
 // (реализации функций в файле cpp)
 //
 // тест на перегрев
-float overheating_time(float temp, Engine& engine);
+float overheating_time(Engine& engine);

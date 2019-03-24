@@ -1,2 +1,6 @@
-﻿  main.cpp
+﻿  pch.cpp
+  Engine.cpp
+  main.cpp
+  Test.cpp
+  Создание кода...
   Test.vcxproj -> D:\Projects\Программирование\с++ и с# проекты\Test\Debug\Test.exe
