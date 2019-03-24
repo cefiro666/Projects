@@ -76,7 +76,7 @@ int main()
 		<< setprecision(1) << int_comb_engine.engine_temp << " градусов\n";
 
 	cout << " Скорость вращения вала в момент остановки " << fixed
-		<< setprecision(1) << int_comb_engine.rotat_speed << " м/сек\n";
+		<< setprecision(1) << int_comb_engine.rotat_speed << " радиан/сек\n";
 
 	cout << "\n Работа программы завершена. Нажмите Enter для выхода...";
 	cin.get();
