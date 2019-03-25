@@ -78,7 +78,7 @@ void Engine::int_comb_simulation()
 		heat_rate = M * coef_M + rotat_speed * rotat_speed * coef_rotat_speed;
 		cool_rate = C * (medium_temp - engine_temp);
 		engine_temp += heat_rate + cool_rate;
-		// время расчета параметров за одну итерацию - 0.01 секунда
+		// частота вычисления ускорения - 100 раз в секунду
 		rotat_speed += a / 100;
 		engine_time += 0.01F;
 	}

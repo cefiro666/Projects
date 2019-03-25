@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include <iostream>
+#include <iomanip>
 #include "Engine.h"
 
 // В этом файле можно добавлять определения новых
@@ -7,4 +8,4 @@
 // (реализации функций в файле cpp)
 //
 // тест на перегрев
-float overheating_time(Engine& engine);
+void overheating_time(Engine& engine);

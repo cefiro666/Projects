@@ -1,0 +1,11 @@
+﻿  pch.cpp
+  Engine.cpp
+  Test.cpp
+  main.cpp
+d:\cefiro\документы\projects\testenginewindows\test\main.cpp(1): warning C4653: параметр компилятора "Оптимизации (один или несколько параметров из /Oawstgp[y]) или отладочные проверки (один или несколько параметров из /GZ, /RTCcsu)" несовместим с предкомпилированным заголовком; текущий параметр командной строки пропускается
+  Создание кода
+  86 of 86 functions (100.0%) were compiled.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  Создание кода завершено
+  Test.vcxproj -> D:\cefiro\Документы\Projects\testEngineWindows\Release\Test.exe
