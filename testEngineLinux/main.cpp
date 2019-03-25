@@ -1,16 +1,11 @@
 ﻿#include "pch.h"
 #include "Test.h"
 #include "Engine.h"
-#include <Windows.h>
 
 using namespace std;
 
 int main()
 {
-	//установка параметров локали (только для windows)
-	SetConsoleCP(1251);
-	SetConsoleOutputCP(1251);
-
 	cout << "\n	Программа тестирования\n";
 	cout << " =====================================\n\n";
 
