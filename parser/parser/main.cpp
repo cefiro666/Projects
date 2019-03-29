@@ -12,7 +12,7 @@
 
 using namespace std;
 
-// форматирование ссылок и удаление лишних тегов из абзацев
+// форматирование ссылок
 void formatLink(string& buff)
 {
 	string openTeg, closeTeg, link;
