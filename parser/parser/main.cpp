@@ -15,20 +15,19 @@ using namespace std;
 // форматирование ссылок и удаление лишних тегов из абзацев
 void formatLink(string& buff)
 {
-	string openTeg, closeTeg;
-	string a;
+	string openTeg, closeTeg, link;
+	unsigned int pos = 0;
 	unsigned int begin = 0;
 	unsigned int end;
-	unsigned int pos = 0;
-	pos = 0;
-	while (true) {
+
+	while (true) 
+	{
 		openTeg = "<a href=\"";
 		closeTeg = "\"";
 		begin = buff.find(openTeg, pos);
 		if (begin == string::npos) break;
 		end = buff.find(closeTeg, begin + openTeg.size());
-		a = " [" + buff.substr(begin + openTeg.size(), end -
-			(begin + openTeg.size())) + "]";
+		link = " [" + buff.substr(begin + openTeg.size(), end - (begin + openTeg.size())) + "]";
 
 		closeTeg = ">";
 		end = buff.find(closeTeg, begin + openTeg.size());
@@ -38,41 +37,40 @@ void formatLink(string& buff)
 		openTeg = "</a>";
 		begin = buff.find(openTeg, pos);
 		buff.erase(begin, openTeg.size());
-		buff.insert(begin, a);
+		buff.insert(begin, link);
 
-		openTeg = "<a href=\"";
-		pos = begin + a.size();
+		pos = begin + link.size();
 	}
+}
 
-	// удаление лишних тегов
-	string arr[2] = { "span", "i" };
-	for (int i = 0; i < 2; i++)
+// удаление лишних тегов из текста (можно добавлять)
+void deleteTeg(string& buff)
+{
+	string openTeg, closeTeg;
+	unsigned int pos = 0;
+	unsigned int begin = 0;
+	unsigned int end;
+	vector<string> arrTeg = { "span", "i", "sup", "em" };
+	vector<string> arrTegPar = { "<", "</" };
+
+	for (unsigned int n = 0; n < arrTeg.size(); n++)
 	{
-		pos = 0;
-		while (true) {
-			openTeg = "<" + arr[i];
-			closeTeg = ">";
-			begin = buff.find(openTeg, pos);
-			if (begin == string::npos) break;
-			end = buff.find(closeTeg, begin + openTeg.size());
-			buff.erase(begin, end - begin + closeTeg.size());
-		}
-		pos = 0;
-		while (true) {
-			openTeg = "</" + arr[i];
-			closeTeg = ">";
-			begin = buff.find(openTeg, pos);
-			if (begin == string::npos) break;
-			end = buff.find(closeTeg, begin + openTeg.size());
-			buff.erase(begin, end - begin + closeTeg.size());
+		for (unsigned int i = 0; i < arrTegPar.size(); i++)
+		{
+			while (true)
+			{
+				openTeg = arrTegPar[i] + arrTeg[n];
+				closeTeg = ">";
+				begin = buff.find(openTeg);
+				if (begin == string::npos) break;
+				end = buff.find(closeTeg, begin + openTeg.size());
+				buff.erase(begin, end - begin + closeTeg.size());
+			}
 		}
 	}
 }
 
-
-
-
-// рекурсивный парсер оглавления и абзацев
+// рекурсивный парсер оглавления и параграфов
 void parser(string data, int pos, string& buff, list<int> arrBegin, vector<string> arrTeg)
 {
 	arrBegin.clear();
@@ -83,44 +81,46 @@ void parser(string data, int pos, string& buff, list<int> arrBegin, vector<strin
 			arrBegin.push_back(data.find(arrTeg[i], pos));
 		}
 	}
+
 	if (!arrBegin.empty())
 	{
 		arrBegin.sort();
-
 		int begin = data.find(">", arrBegin.front());
-		string teg = data.substr(arrBegin.front() + 1, begin -
-			arrBegin.front() - 1);
+		string teg = data.substr(arrBegin.front() + 1, begin - arrBegin.front() - 1);
 		int end = data.find("</" + teg, begin + 1);
-		buff.append(data.substr(begin + 1, end -
-			begin - 1) + "\n\n");
-		
+		buff.append(data.substr(begin + 1, end - begin - 1) + "\n\n");
 		parser(data, end, buff, arrBegin, arrTeg);
 	}
 }
 
+// возвращает сформированное имя файла
+string nameFile(LPCSTR url)
+{
+	
+	string sUrl = url;
+	vector<string> signs = { "\\", "/", "?", ":", "*","\"", ">", "<", "|" };
 
+	// замена неразрешенных символов в имени файла на "_"
+	for (unsigned int i = 0; i < signs.size(); i++)
+	{
+		while (sUrl.find(signs[i]) != string::npos)
+		{
+			sUrl.replace(sUrl.find(signs[i]), 1, "_");
+		}
+	}
+
+	return sUrl.substr(sUrl.find("_") + 3, (sUrl.size()- sUrl.find("_") + 3)) + "_Text.txt";
+}
 
 
 int main(int argc, char* argv[])
 {
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
-
+	//     \ / ? : *" > < |
 	//LPCSTR URL = argv[1];
-	LPCSTR URL = "https://lenta.ru/news/2019/03/28/uvajenie/";
-	string url = URL;
-	while (true)
-	{
-		if (url.find("/") == string::npos) break;
-		url.replace(url.find("/"), 1, "_");
-	}
-	while (true)
-	{
-		if (url.find("?") == string::npos) break;
-		url.replace(url.find("?"), 1, "_");
+	LPCSTR URL = "https://edaplus.info/produce/carrot.html";
 
-	}
-	string path = url.substr(8,(url.size()-8)) + "_index.txt";
 
 	// инициализация WinInet
 	HINTERNET hInternet = InternetOpenA("WinInet", INTERNET_OPEN_TYPE_PRECONFIG, 0, 0, 0);
@@ -157,7 +157,7 @@ int main(int argc, char* argv[])
 		}
 		InternetCloseHandle(hOpenUrlA);
 
-		ofstream  text(path, ios::out | ios::binary);
+		ofstream  text(nameFile(URL), ios::out | ios::binary);
 
 		string buff;
 		unsigned int pos = 0;
@@ -167,8 +167,9 @@ int main(int argc, char* argv[])
 
 		parser(data, pos, buff, arrBegin, arrTeg);
 
-		//formatLink(buff);
-	
+		formatLink(buff);
+		deleteTeg(buff);
+
 		text << buff;
 		cout << "Фаил сохранен!" << endl;
 		text.close();
