@@ -1,0 +1,6 @@
+LineWidth:80
+ExcludedPhrases:
+&copy;
+&laquo;
+&raquo;
+<br />

@@ -1,37 +1,47 @@
 ﻿#include "pch.h"
-#include "Connection.h"
-#include "Parser.h"
-#include "File.h"
+#include "ReadConf.h"
+#include "Connect.h"
+#include "Handler.h"
+#include "CreatFile.h"
 
 int main(int argc, char* argv[])
 {
+	//********************************************************
 	// задание локали (только Windows)
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 
-	// переменные параметры
-	int lineWidth = 80;
-	vector<string> extraItems = { "<span>", "<br>", "<i>", "<sup>", "<em>", "<strong>", "</span>",
-		"</i>", "</sup>", "</em>", "</strong>", "&quot;", "&nbsp;", "&copy;", "&laquo;", "&raquo;", "<br />" };
+	//********************************************************
+	// создание объекта конфигурации
+	ReadConf config;
+	// чтение конфигурационного файла
+	config.readConf();
 
-	// подключение к ресурсу по адресу url(argv[1]) и скачивание данных в буфер
-	Connection connect(argv[1]);
-	// конвертация кодировки данных в буфере
-	connect.UTF8ToANSI();
+	//********************************************************
+	// подключение к ресурсу по адресу url(argv[1])
+	// и скачивание данных html в буфер
+	Connect htmlData(argv[1]);
+	// конвертация кодировки в буфере
+	htmlData.UTF8ToANSI();
 
-	// создание объекта для обработки буфера
-	Parser pars;
-	// парсинг буфера (вытяжка заголовков и параграфов)
-	pars.parser(connect.getData());
+	//********************************************************
+	// создание объекта-обработчика буфера
+	Handler news;
+	// передача буфера в обработчик и парсинг
+	// буфера (вытяжка заголовков и параграфов)
+	news.parsing(htmlData.getData());
 	// форматирование ссылок в буфере
-	pars.formatLink();
+	news.formatLink();
 	// удаление лишних элементов из буфера
-	pars.delExtraItems(extraItems);
-	// выравнивание по 80 символов в строке с переносом слов
-	pars.lineWidth(lineWidth);
+	news.delExtraItems(config.getextraItems());
+	// выравнивание буфера по ширине строки
+	// с переносом слов
+	news.lineWidth(config.getLineWidth());
 
-	// создание объекта с формированием имени будущего файла по url(argv[1])
-	File textFile(argv[1]);
-	// запись из буфера в тестовый фаил в папке приложения
-	textFile.write(pars.getBuff());
+	//********************************************************
+	// создание объекта с формированием имени 
+	// файла по url(argv[1])
+	CreatFile text(argv[1]);
+	// запись из буфера в тестовый файл в папке приложения
+	text.write(news.getBuff());
 }
