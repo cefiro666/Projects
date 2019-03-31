@@ -1,2 +1,6 @@
-﻿  main.cpp
+﻿  Connection.cpp
+  File.cpp
+  Parser.cpp
+  main.cpp
+  Создание кода...
   parser.vcxproj -> C:\Users\cefiro\Desktop\parser\Debug\parser.exe
