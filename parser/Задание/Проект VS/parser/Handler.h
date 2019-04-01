@@ -14,7 +14,7 @@ private:
 	// буфер данных
 	string buff;
 
-	// переменные для функции parsing
+	// переменные для метода parsing
 	list<int> arrBegin;
 	vector<string> arrTegOpen;
 	vector<string> arrTegClose;
@@ -28,7 +28,8 @@ public:
 	// форматирование ссылок
 	void formatLink();
 
-	// удаление лишних элементов (vector<string> extraItems) из буфера данных
+	// удаление лишних элементов ( extraItems) 
+	// из буфера данных
 	void delExtraItems(vector<string> extraItems);
 
 	// выравнивание ширины строки с переносом слов

@@ -14,7 +14,7 @@ CreatFile::CreatFile(LPCSTR url)
 		}
 	}
 
-	nameFile = sUrl.substr(sUrl.find("_") + 3, (sUrl.size() - sUrl.find("_") + 3)) + "_File.txt";
+	nameFile = sUrl.substr(sUrl.find("_") + 3, (sUrl.size() - sUrl.find("_") + 3)) + "-File.txt";
 }
 
 void CreatFile::write(string buffer)

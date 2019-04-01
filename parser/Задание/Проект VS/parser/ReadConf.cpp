@@ -5,8 +5,10 @@ ReadConf::ReadConf()
 {
 	// параметры по умолчанию
 	lineWidth = 80;
-	extraItems = { "<span>", "<br>", "<i>", "<sup>", "<em>", "<strong>", "</span>",
-	"</i>", "</sup>", "</em>", "</strong>", "&quot;", "&nbsp;" };
+	extraItems = { "<span>", "<br>", "<i>", "<sup>", "<em>",
+		"<strong>", "</span>", "</i>", "</sup>", "</em>",
+		"</strong>", "&quot;", "&nbsp;", "&copy;", "&laquo;",
+		"&raquo;", "<br />", "</b>", "<br/>", "<b>" };
 }
 
 void ReadConf::readConf()
@@ -17,11 +19,11 @@ void ReadConf::readConf()
 	cout << "\n -Reading configuration file... ";
 	if (conf.is_open())
 	{
-		// считать ширину строки из файла
+		// считать ширину строки
 		conf.seekg(10, ios::beg);
 		getline(conf, sLineWidth, '\n');
 		lineWidth = stoi(sLineWidth);
-		// считать исключения из файла
+		// считать исключения
 		conf.seekg(18, ios::cur);
 		string item;
 		while (!conf.eof())
@@ -32,7 +34,8 @@ void ReadConf::readConf()
 		cout << "  Done" << endl;
 		conf.close();
 	} else {
-		cout << "\n\n Error reading configuration file. The default settings are set!\n" << endl;
+		cout << "\n\n Error reading configuration file. ";
+		cout << "The default settings are set!\n" << endl;
 	}
 }
 
@@ -41,7 +44,7 @@ int ReadConf::getLineWidth()
 	return lineWidth;
 }
 
-vector<string> ReadConf::getextraItems()
+vector<string> ReadConf::getExtraItems()
 {
 	return extraItems;
 }

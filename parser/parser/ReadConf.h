@@ -1,4 +1,4 @@
-﻿// класс конфигурации приложения
+﻿// класс конфигурации
 
 #pragma once
 #include <fstream>
@@ -28,6 +28,6 @@ public:
 	int getLineWidth();
 
 	// вернуть список исключаемых слов
-	vector<string> getextraItems();
+	vector<string> getExtraItems();
 };
 

@@ -1,6 +1,5 @@
 LineWidth:80
 ExcludedPhrases:
-&copy;
-&laquo;
-&raquo;
-<br />
+<p class="maintext">
+&ndash;
+<span itemprop="name">

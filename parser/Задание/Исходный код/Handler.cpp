@@ -52,7 +52,7 @@ void Handler::formatLink()
 {
 	string openTeg, closeTeg, link;
 	unsigned int pos = 0;
-	unsigned int begin, end, linkIndex;
+	int begin, end, linkIndex;
 
 	while (true)
 	{
@@ -80,7 +80,7 @@ void Handler::formatLink()
 void Handler::delExtraItems(vector<string> extraItems)
 {
 	string items;
-	unsigned int index;
+	int index;
 
 	for (unsigned int i = 0; i < extraItems.size(); i++)
 	{
@@ -98,30 +98,45 @@ void Handler::lineWidth(int lineWidth)
 {
 	string data, buffer;
 	unsigned int pos = 0;
-	unsigned int space, x;
+	int indexSpace, indexN, indexNN;
 
 	while (pos < buff.size())
 	{
 		buffer.append(buff, pos, lineWidth);
-		x = buffer.find("\n");
+		indexNN = buffer.find("\n\n");
+		indexN = buffer.find("\n");
 
-		if (x != string::npos)
+		if (indexN != string::npos || indexNN != string::npos)
 		{
 			buffer.clear();
-			buffer.append(buff, pos, x);
-			data.append(buffer, 0, x);
-			data.append("\n\n");
+			buffer.append(buff, pos, indexN);
+			data.append(buffer, 0, indexN);
 			buffer.clear();
-			pos += x + 2;
+			if (indexNN != string::npos)
+			{
+				pos += indexN + 2;
+				data.append("\n\n");
+			} else {
+				pos += indexN + 1;
+				data.append("\n");
+			}
+			
 		} else {
-			space = buffer.rfind(' ');
-			data.append(buffer, 0, space);
-			data.append("\n");
-			buffer.clear();
-			pos += space + 1;
+			indexSpace = buffer.rfind(' ');
+			if (indexSpace != string::npos)
+			{
+				data.append(buffer, 0, indexSpace);
+				data.append("\n");
+				buffer.clear();
+				pos += indexSpace + 1;
+			} else {
+				data.append(buffer, 0, lineWidth);
+				data.append("\n");
+				buffer.clear();
+				pos += lineWidth + 1;
+			}
 		}
 	}
-
 	buff = data;
 	cout << "         Done" << endl;
 }
