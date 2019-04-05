@@ -21,11 +21,10 @@ void reversit(char string[MAX])
 		char temp = string[i];
 		string[i] = string[MAX - i];
 		string[MAX - i] = temp;
-		if (string[i] == '\0') break;
 	}
 
-	for (int i = MAX; i > 0; i--)
+	for (int i =0; i < MAX; i++)
 	{
-		cout << string[i];
+		if (string[i] != NULL) cout << string[i];
 	}
 }

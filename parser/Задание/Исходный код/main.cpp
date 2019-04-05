@@ -22,10 +22,7 @@ int main(int argc, char* argv[])
 	// и скачивание данных html в буфер
 	Connect htmlData(argv[1]);
 	// конвертация кодировки в буфере, если utf-8
-	if (htmlData.is_valid_utf8())
-	{
-		htmlData.utf8toAnsi();
-	}
+	if (htmlData.is_valid_utf8()) htmlData.utf8toAnsi();
 	
 	//******************************************************
 	// создание объекта-обработчика

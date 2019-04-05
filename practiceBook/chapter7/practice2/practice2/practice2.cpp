@@ -13,10 +13,8 @@ private:
 public:
 	void getData()
 	{
-		cin.clear();
 		cout  << "Input name: ";
-		getline(cin, name);
-		cin.clear();
+		cin >> name;
 		cout << "Input number: ";
 		cin >> number;
 	}
@@ -35,12 +33,9 @@ int main()
 	int count = 0;
 
 	do {
-		arr[count].getData();
-		count++;
+		arr[count++].getData();
 		cout << "Repeat? ";
-		cin.clear();
-		a = getchar();
-		putchar(a);
+		cin >> a;
 	} while (a != 'n');
 
 	for (int i = 0; i < count; i++)

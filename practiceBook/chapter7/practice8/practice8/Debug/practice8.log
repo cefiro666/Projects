@@ -1,0 +1,3 @@
+﻿  practice8.cpp
+d:\cefiro\документы\projects\practicebook\chapter7\practice8\practice8\practice8.cpp(32): warning C4715: SafeAray::getEl: значение возвращается не при всех путях выполнения
+  practice8.vcxproj -> D:\cefiro\Документы\Projects\practiceBook\chapter7\practice8\Debug\practice8.exe

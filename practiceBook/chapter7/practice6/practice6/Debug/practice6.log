@@ -1,0 +1,3 @@
+﻿  practice6.cpp
+d:\cefiro\документы\projects\practicebook\chapter7\practice6\practice6\practice6.cpp(78): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  practice6.vcxproj -> D:\cefiro\Документы\Projects\practiceBook\chapter7\practice6\Debug\practice6.exe
