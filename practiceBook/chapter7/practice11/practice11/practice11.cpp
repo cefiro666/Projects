@@ -35,33 +35,40 @@ public:
 		value = stold(tempValue);
 	}
 
-	void showMoney()
+	void showValue()
 	{
 		cout << setiosflags(ios::fixed)
 			<< setiosflags(ios::showpoint)
 			<< setprecision(2)
-			<< "Amount - " << value;
+			<< "Value - " << value;
+	}
+
+	void showMany()
+	{
+		cout << "Amount many - " << sValue << endl;
 	}
 
 	void ldtoms(long double value)
 	{
-		stringstream ss;
-		string temp;
 		if (value <= 9999999999999990.00)
 		{
-			ss << value;
-			temp = ss.str();
+			stringstream ss;
+			ss << setiosflags(ios::fixed)
+				<< setiosflags(ios::showpoint)
+				<< setprecision(2) << value;
+
+			char temp[19] = ss.str();
 			sValue.push_back('$');
-			for (int i = 0; i < temp.size(); i++)
+			for (int i = 0; i < 19 - temp.size(); i++)
 			{
-				if (temp.at(i) == '0' || temp.at(i) == '1' || temp.at(i) == '2' ||
-					temp.at(i) == '3' || temp.at(i) == '4' || temp.at(i) == '5' ||
-					temp.at(i) == '6' || temp.at(i) == '7' || temp.at(i) == '8' ||
-					temp.at(i) == '9' || temp.at(i) == '.')
-				{
-					sValue.push_back(temp.at(i));
-				}
+				if (i == 1) { sValue.push_back(','); }
+				if (i == 4) { sValue.push_back(','); }
+				if (i == 7) { sValue.push_back(','); }
+				if (i == 10) { sValue.push_back(','); }
+				if (i == 13) { sValue.push_back(','); }
+				sValue.push_back('0');
 			}
+			sValue.push_back(temp.at(i));
 		} else {
 			cout << "Amount over!" << endl;
 		}
@@ -71,7 +78,6 @@ public:
 int main()
 {
 	Money money;
-	money.setMoney();
-	money.mstdold();
-	money.showMoney();
+	money.ldtoms(3456.78);
+	money.showMany();
 }

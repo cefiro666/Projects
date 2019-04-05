@@ -1,0 +1,4 @@
+﻿  practice11.cpp
+d:\cefiro\документы\projects\practicebook\chapter7\practice11\practice11\practice11.cpp(25): warning C4018: <: несоответствие типов со знаком и без знака
+d:\cefiro\документы\projects\practicebook\chapter7\practice11\practice11\practice11.cpp(62): warning C4018: <: несоответствие типов со знаком и без знака
+d:\cefiro\документы\projects\practicebook\chapter7\practice11\practice11\practice11.cpp(71): error C2065: i: необъявленный идентификатор
