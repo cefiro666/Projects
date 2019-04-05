@@ -1,5 +1,6 @@
 ﻿#include "pch.h"
 #include <SFML/Graphics.hpp>
+#include "Bullet.h"
 #include "Block.h"
 #include "Tank.h"
 
@@ -26,6 +27,8 @@ int main()
 	Clock clock;
 	float animation_time;
 
+	Bullet bul(up, 150, 100);
+
 	while (window.isOpen())
 	{
 		Event event;
@@ -35,68 +38,81 @@ int main()
 				window.close();
 		}
 
+		
+		bul.moveBullet();
+
 		if (Keyboard::isKeyPressed(Keyboard::Up))
 		{
-			animation_time = clock.getElapsedTime().asSeconds();
-			if (animation_time > 0.1)
+			if (heroSprite.getPosition().y > 0)
 			{
-				heroSprite.setTextureRect(IntRect(68, 72, 52, 52));
-				if (animation_time > 0.2)
+				animation_time = clock.getElapsedTime().asSeconds();
+				if (animation_time > 0.1)
 				{
-					clock.restart();
+					heroSprite.setTextureRect(IntRect(68, 72, 52, 52));
+					if (animation_time > 0.2)
+					{
+						clock.restart();
+					}
+				} else {
+					heroSprite.setTextureRect(IntRect(4, 72, 52, 52));
 				}
-			} else {
-				heroSprite.setTextureRect(IntRect(4, 72, 52, 52));
+				heroSprite.move(0, -2);
 			}
-			heroSprite.move(0, -2);
-
 		} else if (Keyboard::isKeyPressed(Keyboard::Down))
 		{
-			animation_time = clock.getElapsedTime().asSeconds();
-			if (animation_time > 0.1)
+			if (heroSprite.getPosition().y + 52 < 832)
 			{
-				heroSprite.setTextureRect(IntRect(324, 72, 52, 52));
-				if (animation_time > 0.2)
+				animation_time = clock.getElapsedTime().asSeconds();
+				if (animation_time > 0.1)
 				{
-					clock.restart();
+					heroSprite.setTextureRect(IntRect(324, 72, 52, 52));
+					if (animation_time > 0.2)
+					{
+						clock.restart();
+					}
+				} else {
+					heroSprite.setTextureRect(IntRect(260, 72, 52, 52));
 				}
-			} else {
-				heroSprite.setTextureRect(IntRect(260, 72, 52, 52));
+				heroSprite.move(0, 2);
 			}
-			heroSprite.move(0, 2);
-
 		} else if (Keyboard::isKeyPressed(Keyboard::Right))
 		{
-			animation_time = clock.getElapsedTime().asSeconds();
-			if (animation_time > 0.1)
+			if (heroSprite.getPosition().x + 52 < 832)
 			{
-				heroSprite.setTextureRect(IntRect(196, 72, 52, 52));
-				if (animation_time > 0.2)
+				animation_time = clock.getElapsedTime().asSeconds();
+				if (animation_time > 0.1)
 				{
-					clock.restart();
+					heroSprite.setTextureRect(IntRect(196, 72, 52, 52));
+					if (animation_time > 0.2)
+					{
+						clock.restart();
+					}
+				} else {
+					heroSprite.setTextureRect(IntRect(132, 72, 52, 52));
 				}
-			} else {
-				heroSprite.setTextureRect(IntRect(132, 72, 52, 52));
+				heroSprite.move(2, 0);
 			}
-			heroSprite.move(2, 0);
-
 		} else if (Keyboard::isKeyPressed(Keyboard::Left)) 
 		{
-			animation_time = clock.getElapsedTime().asSeconds();
-			if (animation_time > 0.1)
+			if (heroSprite.getPosition().x > 0)
 			{
-				heroSprite.setTextureRect(IntRect(456, 72, 52, 52));
-				if (animation_time > 0.2)
+				animation_time = clock.getElapsedTime().asSeconds();
+				if (animation_time > 0.1)
 				{
-					clock.restart();
+					heroSprite.setTextureRect(IntRect(456, 72, 52, 52));
+					if (animation_time > 0.2)
+					{
+						clock.restart();
+					}
+				} else {
+					heroSprite.setTextureRect(IntRect(392, 72, 52, 52));
 				}
-			} else {
-				heroSprite.setTextureRect(IntRect(392, 72, 52, 52));
+				heroSprite.move(-2, 0);
 			}
-			heroSprite.move(-2, 0);
 		}
 
 		window.clear();
+		window.draw(bul.bulletSprite);
 		window.draw(heroSprite);
 		window.display();
 	}
