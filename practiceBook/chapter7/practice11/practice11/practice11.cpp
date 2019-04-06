@@ -22,7 +22,7 @@ public:
 	void mstdold()
 	{
 		string tempValue;
-		for (int i = 0; i < sValue.size(); i++)
+		for (unsigned int i = 0; i < sValue.size(); i++)
 		{
 			if (sValue.at(i) == '0' || sValue.at(i) == '1' || sValue.at(i) == '2' ||
 				sValue.at(i) == '3' || sValue.at(i) == '4' || sValue.at(i) == '5' ||
@@ -57,20 +57,31 @@ public:
 				<< setiosflags(ios::showpoint)
 				<< setprecision(2) << value;
 
-			char temp[19] = ss.str();
-			sValue.push_back('$');
-			for (int i = 0; i < 19 - temp.size(); i++)
-			{
-				if (i == 1) { sValue.push_back(','); }
-				if (i == 4) { sValue.push_back(','); }
-				if (i == 7) { sValue.push_back(','); }
-				if (i == 10) { sValue.push_back(','); }
-				if (i == 13) { sValue.push_back(','); }
-				sValue.push_back('0');
+			string temp = ss.str();
+
+			for (unsigned int i = 0; i < temp.length() / 2; i++)
+			{ 	
+				swap(temp[i], temp[temp.length() - i - 1]);
 			}
-			sValue.push_back(temp.at(i));
+
+			for (unsigned int i = 0; i < temp.length(); i++)
+			{
+				if (i == 6) temp.insert(i, ",");
+				if (i == 10) temp.insert(i, ",");
+				if (i == 14) temp.insert(i, ",");
+				if (i == 18) temp.insert(i, ",");
+				if (i == 22) temp.insert(i, ",");
+			}
+
+			for (unsigned int i = 0; i < temp.length() / 2; i++)
+			{
+				swap(temp[i], temp[temp.length() - i - 1]);
+			}
+
+			sValue.push_back('$');
+			sValue.append(temp);
 		} else {
-			cout << "Amount over!" << endl;
+			sValue = "Amount over!";
 		}
 	}
 };
@@ -78,6 +89,6 @@ public:
 int main()
 {
 	Money money;
-	money.ldtoms(3456.78);
+	money.ldtoms(9999999999999990.00);
 	money.showMany();
 }
