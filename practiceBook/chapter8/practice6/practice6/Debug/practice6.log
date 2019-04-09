@@ -1,0 +1,3 @@
+﻿  practice6.cpp
+c:\users\cefiro\desktop\projects\practicebook\chapter8\practice6\practice6\practice6.cpp(56): warning C4244: =: преобразование "float" в "int", возможна потеря данных
+  practice6.vcxproj -> C:\Users\cefiro\Desktop\Projects\practiceBook\chapter8\practice6\Debug\practice6.exe

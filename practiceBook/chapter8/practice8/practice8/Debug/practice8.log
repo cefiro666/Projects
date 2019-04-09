@@ -1,0 +1,4 @@
+﻿  practice8.cpp
+c:\users\cefiro\desktop\projects\practicebook\chapter8\practice8\practice8\practice8.cpp(120): error C2679: бинарный "*": не найден оператор, принимающий правый операнд типа "bMoney" (или приемлемое преобразование отсутствует)
+  c:\users\cefiro\desktop\projects\practicebook\chapter8\practice8\practice8\practice8.cpp(88): note: может быть "bMoney bMoney::operator *(long double)"
+  c:\users\cefiro\desktop\projects\practicebook\chapter8\practice8\practice8\practice8.cpp(120): note: при попытке сопоставить список аргументов "(bMoney, bMoney)"
