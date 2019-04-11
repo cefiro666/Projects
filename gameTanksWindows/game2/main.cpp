@@ -27,7 +27,7 @@ int main()
 		}
 
 		
-		bul.moveBullet();
+		//bul.moveBullet();
 		tan.moveTank();
 
 		window.clear();

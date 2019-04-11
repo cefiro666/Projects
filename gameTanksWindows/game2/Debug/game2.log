@@ -1,2 +1,7 @@
-﻿  Bullet.cpp
+﻿  pch.cpp
+  Block.cpp
+  Bullet.cpp
+  Tank.cpp
+  main.cpp
+  Создание кода...
   game2.vcxproj -> D:\cefiro\Документы\Projects\gameTanksWindows\Debug\game2.exe

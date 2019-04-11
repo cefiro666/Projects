@@ -74,12 +74,12 @@ public:
 
 	bool operator== (Fraction div2)
 	{
-		return (numerator == div2.numerator && denominator == div2.denominator) ? true : false;
+		return numerator == div2.numerator && denominator == div2.denominator;
 	}
 
 	bool operator!= (Fraction div2)
 	{
-		return (numerator != div2.numerator || denominator != div2.denominator) ? true : false;
+		return numerator != div2.numerator || denominator != div2.denominator;
 	}
 
 	Fraction lowterms(Fraction var);

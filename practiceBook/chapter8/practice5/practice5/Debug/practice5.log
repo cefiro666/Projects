@@ -1,2 +1,4 @@
-﻿  practice5.cpp
-  practice5.vcxproj -> C:\Users\cefiro\Desktop\Projects\practiceBook\chapter8\practice5\Debug\practice5.exe
+﻿  pch.cpp
+  practice5.cpp
+  LINK : не найден или не выполнена сборка D:\cefiro\Документы\Projects\practiceBook\chapter8\practice5\Debug\practice5.exe при последней инкрементной компоновке; выполняется полная компоновка
+  practice5.vcxproj -> D:\cefiro\Документы\Projects\practiceBook\chapter8\practice5\Debug\practice5.exe

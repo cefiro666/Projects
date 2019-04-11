@@ -1,2 +1,3 @@
 ﻿  practice4.cpp
-  practice4.vcxproj -> C:\Users\cefiro\Desktop\Projects\practiceBook\chapter8\practice4\Debug\practice4.exe
+d:\cefiro\документы\projects\practicebook\chapter8\practice4\practice4\practice4.cpp(90): warning C4305: аргумент: усечение из "__int64" в "long double"
+  practice4.vcxproj -> D:\cefiro\Документы\Projects\practiceBook\chapter8\practice4\Debug\practice4.exe

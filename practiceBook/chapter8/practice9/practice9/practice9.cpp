@@ -21,7 +21,7 @@ public:
 	// обратите внимание, что функция возвращает ссылку!
 	int& operator[ ] (int n)
 	{
-		if (n < 0 || n >= LIMIT)
+		if (n < hight || n >= low)
 		{
 			cout << "\nОшибочный индекс!"; exit(1);
 		}
@@ -34,7 +34,7 @@ int main()
 	safearray sa1(30,70);
 
 	// задаем значения элементов
-	for (int j = sa1.low - LIMIT; j < sa1.hight; j++)
+	for (int j = 0; j < LIMIT; j++)
 		sa1[j] = j * 10;    // используем функцию слева от знака =
 
 	  // показываем элементы

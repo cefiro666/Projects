@@ -62,26 +62,22 @@ public:
 
 	Time operator++ ()
 	{
-		++hours;
-		return Time(hours, minutes, seconds);
+		return Time(++hours, minutes, seconds);
 	}
 
 	Time operator-- ()
 	{
-		--hours;
-		return Time(hours, minutes, seconds);
+		return Time(--hours, minutes, seconds);
 	}
 
 	Time operator++ (int)
 	{
-		hours++;
-		return Time(hours, minutes, seconds);
+		return Time(hours++, minutes, seconds);
 	}
 
 	Time operator-- (int)
 	{
-		hours--;
-		return Time(hours, minutes, seconds);
+		return Time(hours--, minutes, seconds);
 	}
 
 

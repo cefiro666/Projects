@@ -87,7 +87,7 @@ int main()
 {
 	Int val1;
 	Int val2 = 25;
-	Int val3 = 5;
+	Int val3 = 45646345636654677;
 	val1 = val2 + val3;
 	val1.print_value();
 	val1 = val2 - val3;
