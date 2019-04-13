@@ -1,21 +1,71 @@
-﻿// practice2.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
-//
-
-#include "pch.h"
+﻿#include "pch.h"
 #include <iostream>
+
+using namespace std;
+
+#include <string> 
+
+class String
+{
+protected:
+	enum { SZ = 80 };
+	char str[SZ];
+
+public:
+	String()
+	{
+		str[0] = '\x0';
+	}
+
+	String(const char s[])
+	{
+		strcpy_s(str, s);
+	} 
+
+	void display() const
+	{
+		cout << str;
+	}
+
+	operator char* ()
+	{
+		return str;
+	}
+};
+
+class Pstring : public String
+{
+public:
+	Pstring() {}
+
+	Pstring(const char s[])
+	{
+		if (strlen(s) >= SZ)
+		{
+			strncpy_s(str, s, SZ - 1);
+		} else {
+			strcpy_s(str, s);
+		}
+	}
+};
 
 int main()
 {
-    std::cout << "Hello World!\n"; 
+	system("chcp 1251");
+	Pstring s1;                
+
+	char xstr[] = "Ура, товарищи! ";
+
+	s1 = xstr;                 
+
+	s1.display();          
+
+	Pstring s2 = "Мы победим!ghjgjhgjhghjgjgjghgjhgjhgjhgjhgjhgjhgjhgjgjhgjhgjgjhgjghjghjgjhgjhgjghjgqwqwqwqwqwqwqw";
+
+	cout << static_cast<char*>(s2); 
+	cout << endl;
+
+	return 0;
 }
 
-// Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
-// Отладка программы: F5 или меню "Отладка" > "Запустить отладку"
 
-// Советы по началу работы 
-//   1. В окне обозревателя решений можно добавлять файлы и управлять ими.
-//   2. В окне Team Explorer можно подключиться к системе управления версиями.
-//   3. В окне "Выходные данные" можно просматривать выходные данные сборки и другие сообщения.
-//   4. В окне "Список ошибок" можно просматривать ошибки.
-//   5. Последовательно выберите пункты меню "Проект" > "Добавить новый элемент", чтобы создать файлы кода, или "Проект" > "Добавить существующий элемент", чтобы добавить в проект существующие файлы кода.
-//   6. Чтобы снова открыть этот проект позже, выберите пункты меню "Файл" > "Открыть" > "Проект" и выберите SLN-файл.
