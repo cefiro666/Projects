@@ -19,11 +19,13 @@ string get_username() {
 	string username = buffer;
 	return username;
 }
+
 //возвращает установленный путь файла данных
 string get_path() {
 	string path = "C:/Users/" + get_username() + "/Documents/datacalc.txt";
 	return path;
 }
+
 //проверка присутствия файла данных и создание нового файла 
 void check_file() {
 	//создание файлового потока на чтение
@@ -89,6 +91,7 @@ void check_file() {
 		}
 	}
 }
+
 //возвращает текущую дату в формате dd.mm.yyyy
 const string get_present_date() {
 #pragma warning(disable: 4996)
@@ -99,6 +102,7 @@ const string get_present_date() {
 	strftime(buf, sizeof(buf), "%d.%m.%Y", &tstruct);
 	return buf;
 }
+
 //воод и запись в массив нынешних показаний счетчиков и даты
 void fill_present_readings(Readings &present_readings) {
 	cout << " Введите данные счетчиков на сегодняшний день:\n";
@@ -116,6 +120,7 @@ void fill_present_readings(Readings &present_readings) {
 	//запись нынешней даты в массив
 	present_readings.set_date(get_present_date()); 
 }
+
 //функция изменения тарифов
 void set_tariff(Readings &present_readings, Readings &post_readings, Calculations &calc) {
 	cout << " Есть ли необходимость изменить тарифы?\n Да, изменить (1) / Продолжить без изменения (2)\n Ваш выбор... ";

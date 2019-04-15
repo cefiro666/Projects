@@ -12,6 +12,14 @@ private:
 	int* ap[NUM];
 
 public:
+	Arr()
+	{
+		for (int i = 0; i < NUM; i++)
+		{
+			*(ap + i) = new int[MAX];
+		}
+	}
+
 	int* operator[] (int i)
 	{
 		return *(ap + i);
@@ -19,7 +27,7 @@ public:
 
 	void set(int index, int index2, int value)
 	{
-		*(ap + index) + index2) = value;
+		*(*(ap + index) + index2) = value;
 	}
 
 	int get(int index, int index2)
@@ -32,13 +40,16 @@ int main()
 {
 	Arr arr;
 
-	arr[0]
-
-
-	/*for (int i = 0; i < NUM; i++)
+	for (int i = 0; i < NUM; i++)
 	{
-		*(ap + i) = new int[MAX];
+		for (int k = 0; k < MAX; k++)
+		{
+			arr[i]
+		}
 	}
+
+
+	/*
 
 	for (int i = 0; i < 10; i++)
 	{

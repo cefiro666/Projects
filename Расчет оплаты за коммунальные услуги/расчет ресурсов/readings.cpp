@@ -16,37 +16,45 @@ void Readings::set_cold_water_tariff(float value) { cold_water_tariff = value;}
 void Readings::set_hot_water_tariff(float value) { hot_water_tariff = value; }
 void Readings::set_electricity_tariff(float value) { electricity_tariff = value; }
 void Readings::print_date() {cout << " " << date << endl;}
+
 //запись показаний счетчиков и даты в фаил данных (нынешний период)
 void Readings::write(string path) { 
-	//создается строчный массив для чтения всего файла
-	string buffer_in[256];
+	//создается массив для чтения всего файла
+	vector<string> buffer_in;
+
 	//открытие файлового потока на чтение по пути path
 	ifstream in(path, ios_base::in);
+
 	//если файла открылся
 	if (in.is_open()) {
 		//установка указателя в начало
 		in.seekg(0, ios_base::beg);
-		for (int i = 0; i < 256; i++) {
-			//считывание 256 строк из файла в массив
-			getline(in, buffer_in[i], '\n');
+
+		// пока не кончится файл
+		while (!in.eof()) {
+			// добавить элемент в массив
+			buffer_in.push_back("");
+			// записать в него строку из файла
+			getline(in, buffer_in.back(), '\n');
 		}
 	} else {
 		cout << "Ошибка открытия файла для записи!\n";
 	}
 	//закрыли поток
 	in.close();
+
 	//открытие файлового потока на запись (с затиранием содержимого при открытии)
 	ofstream out(path, ios_base::trunc | ios_base::out);
+
 	if (out.is_open()) {
 		out.seekp(0, ios_base::beg);
+
 		//запись в первую строку актуальных тарифов
 		out << hot_water_tariff << " " << cold_water_tariff << " " << electricity_tariff << " " << drainage_tariff << "\n";
+
 		//запись строк прошлого файла из буфера кроме первой строки (там хранятся ненужные прошлые тарифы)
-		for (int i = 1; i < 256; i++) {
-			//пропуск пустых строк
-			if (!(buffer_in[i] == "")) {
-				out << buffer_in[i] << "\n";
-			}
+		for (int i = 1; i < buffer_in.size(); i++) {
+			out << buffer_in[i] << "\n";
 		}
 		//установка указателя в конец
 		out.seekp(0, ios_base::end);
