@@ -9,38 +9,39 @@ int pMemory[100];
 class Float
 {
 private:
-	int addr;
-	static int fMemTop;
+	int _addr;
+	static int _fMemTop;
 
 public:	
 	Float(float value) 
 	{
-		addr = fMemTop;
-		fMemory[fMemTop++] = value;
+		_addr = _fMemTop;
+		fMemory[_fMemTop++] = value;
 	}
 
 	int operator& ()
 	{
-		return addr;
+		return _addr;
 	}
 };
 
 class PtrFloat
 {
 private:
-	static int pMemTop;
-	int addr;
+	int _addr;
+	static int _pMemTop;
+
 	
 public:
 	PtrFloat(int addres)
 	{
-		addr = pMemTop;
-		pMemory[pMemTop++] = addres;
+		_addr = _pMemTop;
+		pMemory[_pMemTop++] = addres;
 	}
 
 	float& operator* ()
 	{
-		return fMemory[pMemory[addr]];
+		return fMemory[pMemory[_addr]];
 	}
 
 	friend ostream& operator<< (ostream& out, const PtrFloat& ptr);
@@ -48,7 +49,7 @@ public:
 
 ostream& operator<< (ostream& out, const PtrFloat& ptr)
 {
-	out << pMemory[ptr.addr];
+	out << pMemory[ptr._addr];
 	return out;
 }
 
