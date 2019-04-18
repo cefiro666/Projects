@@ -1,0 +1,4 @@
+﻿  practice5.cpp
+LINK : warning LNK4075: не учитывается "/INCREMENTAL" из-за спецификации "/PROFILE"
+practice5.obj : warning LNK4075: не учитывается "/EDITANDCONTINUE" из-за спецификации "/OPT:REF"
+  practice5.vcxproj -> C:\Users\cefiro\Desktop\Projects\practiceBook\chapter11\practice5\Debug\practice5.exe
