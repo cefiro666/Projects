@@ -16,6 +16,7 @@ public:
 		cin >> surname;
 		cout << "Введите номер: ";
 		cin >> number;
+<<<<<<< HEAD
 	}
 
 	void getName()
@@ -53,6 +54,51 @@ public:
 		}
 
 		file.close();
+=======
+
+		ofstream file;
+		file.open("data.dat", ios::app | ios::out | ios::binary);
+
+		if (!file)
+		{
+			cout << "\nНевозможно открыть фаил для записи!";
+		}
+		else {
+			file << number << endl
+				<< surname << endl
+				<< name << endl
+				<< patronymic << endl;
+			file.close();
+		}
+	}
+
+	void getName(unsigned int numb)
+	{
+		ifstream file;
+		file.open("data.dat", ios::in | ios::binary);
+
+		if (!file)
+		{
+			cout << "\nНевозможно открыть фаил для чтения!";
+		}
+		else {
+			while (file && number != numb)
+			{
+				file >> number >> surname >> name >> patronymic;
+			}
+
+			if (number == numb)
+			{
+				cout << "Номер - " << number << endl;
+				cout << "Фамилия - " << surname << endl;
+				cout << "Имя - " << name << endl;
+				cout << "Отчество - " << patronymic << endl;
+			}
+			else {
+				cout << "\nНе найдено!" << endl;
+			}
+		}
+>>>>>>> 48d83bc6c0e27c0e8889c130dc34a600bd7d3fbc
 	}
 
 private:
@@ -62,12 +108,16 @@ private:
 	string surname;
 };
 
+<<<<<<< HEAD
 int Name::count = 0;
 
+=======
+>>>>>>> 48d83bc6c0e27c0e8889c130dc34a600bd7d3fbc
 int main()
 {
 	system("chcp 1251");
 
+<<<<<<< HEAD
 	Name* arr[100];
 	char ch;
 
@@ -99,4 +149,21 @@ int main()
 		
 		Name::writeFile(arr);
 	}
+=======
+	unsigned int number;
+	char ch;
+	Name name;
+
+	do {
+		name.setName();
+		cout << "\nПовторить? (y/n)... ";
+		cin.ignore(10, '\n');
+		cin >> ch;
+
+	} while (ch != 'n');
+
+	cout << "\nКакой номер вывести?... ";
+	cin >> number;
+	name.getName(number);
+>>>>>>> 48d83bc6c0e27c0e8889c130dc34a600bd7d3fbc
 }

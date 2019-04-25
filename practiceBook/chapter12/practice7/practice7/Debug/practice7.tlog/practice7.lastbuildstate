@@ -1,2 +1,6 @@
 #TargetFrameworkVersion=v4.0:PlatformToolSet=v142:EnableManagedIncrementalBuild=false:VCToolArchitecture=Native32Bit:WindowsTargetPlatformVersion=10.0
+<<<<<<< HEAD
 Debug|Win32|C:\Users\cefiro\Desktop\Projects\practiceBook\chapter12\practice7\|
+=======
+Debug|Win32|D:\cefiro\Документы\Projects\practiceBook\chapter12\practice7\|
+>>>>>>> 48d83bc6c0e27c0e8889c130dc34a600bd7d3fbc
