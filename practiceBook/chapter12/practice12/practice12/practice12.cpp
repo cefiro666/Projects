@@ -37,7 +37,7 @@ public:
 	static void display();            // вывести данные обо всех
 	static void read();               // чтение из файла
 	static void write();              // запись в файл
-	static void find(int);              // запись в файл
+	static void find(unsigned long);              // запись в файл
 };
 //---------------------------------------------------------
 //статические переменные
@@ -55,7 +55,7 @@ public:
 	void getdata()
 	{
 		employee::getdata();
-		cout << "  Введите титул: ";       cin >> title;
+		cout << "  Введите титул: "; cin >> title;
 		cout << "  Введите налоги: "; cin >> dues;
 	}
 	void putdata()
@@ -109,9 +109,10 @@ void employee::add()
 }
 //---------------------------------------------------------
 
-void employee::find(int num)
+void employee::find(unsigned long num)
 {
 	employee* emp;
+	bool isFind = false;
 	int size;               // размер объекта employee 
 	employee_type etype;    // тип работника
 	ifstream inf;           // открыть ifstream в двоичном виде
@@ -120,45 +121,49 @@ void employee::find(int num)
 	{
 		cout << "\nНевозможно открыть файл\n"; return;
 	}
-	n = 0;                  // В памяти работников нет
-	while (true)
-	{                     // чтение типа следующего работника
+	n = 0;                
+	while (!isFind && !inf.eof())
+	{                    
 		inf.read((char*)& etype, sizeof(etype));
-		if (inf.eof())       // выход из цикла по EOF
+		if (inf.eof())   
 			break;
-		if (!inf)              // ошибка чтения типа
+		if (!inf)       
 		{
 			cout << "\nНевозможно чтение типа\n"; return;
 		}
 		switch (etype)
-		{                   // создать нового работника
-		case tmanager:      // корректного типа
+		{               
+		case tmanager: 
 			emp = new manager;
-			if (emp->number == num)
-			{
-				emp->display();
-				delete emp;
-			}
+			size = sizeof(manager);
 			break;
 		case tscientist:
 			emp = new scientist;
-			if (emp->number == num)
-			{
-				emp->display();
-				delete emp;
-			}
+			size = sizeof(scientist);
 			break;
 		case tlaborer:
 			emp = new laborer;
-			if (emp->number == num)
-			{
-				emp->display();
-				delete emp;
-			}
+			size = sizeof(laborer);
 			break;
 		default: cout << "\nНеизвестный тип в файле\n"; return;
+		}     
+
+		inf.read((char*)emp, size);
+
+		if (!inf) 
+		{
+			cout << "\nЧтение данных из файла невозможно\n"; return;
+		}
+
+		if (emp->number == num)
+		{
+			cout << "Найденный работник:\n";
+			emp->putdata();
+			cout << endl;
+			isFind = true;
 		}
 	}
+	if (!isFind) cout << "Не найдено!\n";
 }
 
 
@@ -168,7 +173,7 @@ void employee::display()
 	for (int j = 0; j < n; j++)
 	{
 		cout << (j + 1);                // вывести номер
-		switch (arrap[j]->get_type()) //вывести тип 
+		switch ((*arrap[j]).get_type()) //вывести тип 
 		{
 		case tmanager:  cout << ". Тип: Менеджер";  break;
 		case tscientist: cout << ". Тип: Ученый"; break;
@@ -199,7 +204,7 @@ employee_type employee::get_type()
 //Записать все объекты, хранящиеся в памяти, в файл
 void employee::write()
 {
-	int size;
+	int size = 0;
 	cout << "Идет запись " << n << " работников.\n";
 	ofstream ouf;           // открыть ofstream в двоичном виде
 	employee_type etype;   // тип каждого объекта employee
@@ -216,10 +221,17 @@ void employee::write()
 		ouf.write((char*)& etype, sizeof(etype));
 		switch (etype)         // find its size
 		{
-		case tmanager:  size = sizeof(manager); break;
-		case tscientist: size = sizeof(scientist); break;
-		case tlaborer:  size = sizeof(laborer); break;
-		}      //запись объекта employee в файл    ouf.write( (char*)(arrap[j]), size );
+		case tmanager:  
+			size = sizeof(manager); 
+			break;
+		case tscientist: 
+			size = sizeof(scientist);
+			break;
+		case tlaborer:  
+			size = sizeof(laborer); 
+			break;
+		}   
+		ouf.write((char*)arrap[j], size);
 		if (!ouf)
 		{
 			cout << "\nЗапись в файл невозможна\n"; return;
@@ -269,8 +281,8 @@ void employee::read()
 		{
 			cout << "\nЧтение данных из файла невозможно\n"; return;
 		}
-		n++;                  // счетчик работников увеличить
-	}  //end while
+		n++;
+	} 
 	cout << "Идет чтение " << n << " работников\n";
 }
 ///////////////////////////////////////////////////////////
