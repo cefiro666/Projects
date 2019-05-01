@@ -1,0 +1,15 @@
+﻿  practice7.cpp
+C:\Users\cefiro\Documents\Projects\practiceBook\chapter14\practice7\practice7\practice7.cpp(119): warning C4244: /=: преобразование "long" в "T", возможна потеря данных
+          with
+          [
+              T=char
+          ]
+  C:\Users\cefiro\Documents\Projects\practiceBook\chapter14\practice7\practice7\practice7.cpp(91): note: при компиляции функции-члена "<Нет данных>" класса класс <Нет данных>
+  C:\Users\cefiro\Documents\Projects\practiceBook\chapter14\practice7\practice7\practice7.cpp(71): note: выполняется компиляция ссылки на экземпляр шаблон функции "Fraction<char> Fraction<char>::lowterms(Fraction<char>)"
+  C:\Users\cefiro\Documents\Projects\practiceBook\chapter14\practice7\practice7\practice7.cpp(129): note: выполняется компиляция ссылки на экземпляр шаблон класс "Fraction<char>"
+C:\Users\cefiro\Documents\Projects\practiceBook\chapter14\practice7\practice7\practice7.cpp(120): warning C4244: /=: преобразование "long" в "T", возможна потеря данных
+          with
+          [
+              T=char
+          ]
+  practice7.vcxproj -> C:\Users\cefiro\Documents\Projects\practiceBook\chapter14\practice7\Debug\practice7.exe
