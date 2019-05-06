@@ -1,0 +1,12 @@
+﻿  practice9.cpp
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.20.27508\include\algorithm(142): error C2672: "operator __surrogate_func": не найдена соответствующая перегруженная функция
+  C:\Users\cefiro\Desktop\chapter15\practice9\practice9\practice9.cpp(17): note: выполняется компиляция ссылки на экземпляр шаблон функции "_InIt std::find_if<std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>,std::_Binder<std::_Unforced,std::equal_to<_Ty>,std::string &>>(_InIt,const _InIt,_Pr)"
+          with
+          [
+              _InIt=std::_Vector_iterator<std::_Vector_val<std::_Simple_types<std::string>>>,
+              _Ty=std::string,
+              _Pr=std::_Binder<std::_Unforced,std::equal_to<std::string>,std::string &>
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.20.27508\include\algorithm(142): error C2893: Сбой при специализации функции-шаблона "unknown-type std::_Binder<std::_Unforced,std::equal_to<std::string>,std::string &>::operator ()(_Unbound &&...) const"
+  C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.20.27508\include\algorithm(142): note: Со следующими аргументами шаблона:
+  C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.20.27508\include\algorithm(142): note: "_Unbound={std::basic_string<char,std::char_traits<char>,std::allocator<char>> &}"
