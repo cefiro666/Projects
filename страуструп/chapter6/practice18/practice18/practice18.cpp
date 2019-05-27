@@ -1,17 +1,21 @@
 ﻿#include <iostream>
 #include <map>
+#include <list>
 #include <sstream>
 
 std::istream* input;
-
 std::map<std::string, double> table;
-std::map <std::string, std::string> func;
+std::map<std::string, std::list<char> > func;
+
 
 struct Symbol
 {
+	double arg;
 	double numberValue;
 	std::string stringValue;
 };
+
+Symbol symbol = { 0, 0, "" };
 
 enum TokenValue
 {
@@ -20,7 +24,10 @@ enum TokenValue
 	PRINT = ';',	 ASSIGN = '=',	 LP = '(',		RP = ')'
 };
 
+TokenValue currTok = PRINT;
+
 int noOfErrors;
+int line = 0;
 
 double error(const std::string& s, int& line)
 {
@@ -29,12 +36,6 @@ double error(const std::string& s, int& line)
 	line = 0;
 	return 1;
 }
-
-TokenValue currTok = PRINT;
-
-Symbol symbol;
-
-int line = 0;
 
 TokenValue getToken()
 {
@@ -52,6 +53,7 @@ TokenValue getToken()
 	case '\n':
 		++line;
 		return currTok = PRINT;
+
 	case '*':
 	case '/':
 	case '+':
@@ -60,27 +62,39 @@ TokenValue getToken()
 	case ')':
 	case '=':
 		return currTok = TokenValue(ch);
+
 	case '0': case '1': case '2': case '3': case '4':
 	case '5': case '6': case '7': case '8': case '9':
 	case '.':
 		(*input).putback(ch);
 		(*input) >> symbol.numberValue;
 		return currTok = NUMBER;
+
 	default:
 		if (isalpha(ch))
 		{
 			symbol.stringValue = ch;
-			while ((*input).get(ch) && isalnum(ch) || ch == '(' || ch == ')')
+			while ((*input).get(ch) && isalnum(ch))
 			{
 				symbol.stringValue.push_back(ch);
 			}
 
-			(*input).putback(ch);
-
-			if (symbol.stringValue.find("(") != std::string::npos)
+			if (ch == '(')
 			{
+				std::string arg;
+				while (true)
+				{
+					(*input).get(ch);
+					if (ch == ')') break;
+					arg.push_back(ch);
+				}
+
+				if (!arg.empty()) symbol.arg = std::stoi(arg);
+
 				return currTok = FUNC;
 			}
+
+			(*input).putback(ch);
 
 			return currTok = NAME;
 		}
@@ -104,43 +118,59 @@ double prim(bool get)
 		getToken();
 		return v;
 	}
+
 	case NAME:
 	{
 		double& v = table[symbol.stringValue];
 		if (getToken() == ASSIGN) v = expr(true);
 		return v;
 	}
+
 	case FUNC:
 	{
-		std::string& s = func[symbol.stringValue];
-		TokenValue token = getToken();
-		if (token == ASSIGN)
+		std::list<char>& list = func[symbol.stringValue];
+		std::list<char>::iterator i;
+		if (getToken() == ASSIGN)
 		{
+			std::cout << symbol.arg << '\n';
+			char ch;
+			(*input).get(ch);
+			while (true)
+			{
+				if (ch == '\n') break;
+				list.push_back(ch);
+				(*input).get(ch);
+			}
+
 			std::string str;
-			(*input) >> str;
-			s.append(str);
-
-			(*input).clear();
-
-			input = new std::istringstream(s);
+			for (i = list.begin(); i != list.end(); i++)
+			{
+				str.push_back(*i);
+			}
+			
+			input = new std::istringstream(str);
 			double v = expr(true);
 			input = &std::cin;
 			return v;
 
 		} else {
-			
-			std::string buffer;
-			std::string temp;
-			(*input) >> buffer;
-			temp.append(char(token) + buffer);
-			input = new std::istringstream(s + temp);
+
+			std::string str;
+			for (i = list.begin(); i != list.end(); i++)
+			{
+				str.push_back(*i);
+			}
+
+			input = new std::istringstream(str);
 			double v = expr(true);
 			input = &std::cin;
 			return v;
 		}
 	}
+
 	case MINUS:
 		return -prim(true);
+
 	case LP:
 	{
 		double e = expr(true);
@@ -148,6 +178,7 @@ double prim(bool get)
 		getToken();
 		return e;
 	}
+
 	default:
 		return error("primary ecpected", line);
 	}
@@ -164,6 +195,7 @@ double term(bool get)
 		case MUL:
 			left *= prim(true);
 			break;
+
 		case DIV:
 			if (double d = prim(true))
 			{
@@ -171,6 +203,7 @@ double term(bool get)
 				break;
 			}
 			return error("divide by 0", line);
+
 		default:
 			return left;
 		}
@@ -188,9 +221,11 @@ double expr(bool get)
 		case PLUS:
 			left += term(true);
 			break;
+
 		case MINUS:
 			left -= term(true);
 			break;
+
 		default:
 			return left;
 		}
@@ -204,9 +239,11 @@ int main(int argc, char* argv[])
 	case 1:
 		input = &std::cin;
 		break;
+
 	case 2:
 		input = new std::istringstream(argv[1]);
 		break;
+
 	default:
 		error("too many arguments", line);
 		return 1;
@@ -214,11 +251,12 @@ int main(int argc, char* argv[])
 
 	table["pi"] = 3.141592;
 	table["e"] = 2.718281829;
-	func["sqrt()"] = "5 + 6;";
+	func["q"] = { '4','+','5' };
 
 	while (*input)
 	{
 		getToken();
+
 		if (currTok == END) break;
 		if (currTok == PRINT)
 		{
