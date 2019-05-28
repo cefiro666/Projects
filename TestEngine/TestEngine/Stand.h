@@ -6,9 +6,8 @@ class Stand
 {
 public:
 	Stand(Engine*);
-	void startTest(Test*);
+	void startStand(Test*);
 
 private:
 	Engine* engine;
 };
-

@@ -1,13 +1,20 @@
 #pragma once
 #include "Engine.h"
 
-class Inter—ombEngine : public Engine
+class InterCombEngine : public Engine
 {
 public:
-	Inter—ombEngine(double cMoment, double cRotatSpeed,
+	InterCombEngine(double cMoment, double cRotatSpeed,
 		double cTemp, double Inert, double tempOverheat,
 		std::map<double, double> addiction);
 
-	void step() override;
-};
+	void stepSimulation() override;
+	void resetEngine() override;
 
+private:
+	std::map<double, double> ::iterator addictionValue, nextAddictionValue;
+	double nextSpeed;
+	double speed;
+	double nextMoment;
+	double moment;
+};

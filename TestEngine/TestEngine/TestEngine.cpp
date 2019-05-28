@@ -1,10 +1,25 @@
 ﻿#include <iostream>
+#include <Windows.h>
 #include "Stand.h"
 #include "InterСombEngine.h"
 #include "TestOverheat.h"
 
 int main()
 {
+	//установка параметров локали (только для windows)
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
+
+	std::cout << "\n\t  Программа тестирования\n"
+		" =========================================\n\n";
+
+	double mediumTemp;
+	std::cout << " Введите температуру окружающей среды: ";
+	std::cin >> mediumTemp;
+
+	// Входные данные для двигателя внутреннего сгорания
+	//==========================================================
+
 	// коэффициент зависимости скорости нагрева от 
 	// крутящего момента
 	double cMoment = 0.01;
@@ -21,21 +36,27 @@ int main()
 	double Inert = 10;
 
 	// температура перегрева двигателя
-	double tempOverheat = 110;
+	double overheatTemp = 110;
 
 	// зависимость крутящего момента от скорости
-	// вращения вала
+	// вращения вала (V, M)
 	std::map<double, double> addiction = { {0, 20}, {75, 75}, {150, 100},
 		{200, 105}, {250, 75}, {300, 0} };
 
-	Engine* interСombEngine = new InterСombEngine(cMoment, cRotatSpeed,
-		cTemp, Inert, tempOverheat, addiction);
+	//==========================================================
 
-	double T;
-	std::cout << "Input T";
-	std::cin >> T;
+	// создаем нужный двигатель с известными данными
+	Engine* interСombEngine = new InterCombEngine(cMoment, cRotatSpeed,
+		cTemp, Inert, overheatTemp, addiction);
 
-	Test* testOverhead = new TestOverheat(T);
+	// создаем нужный тест с необходимым параметром
+	Test* testOverhead = new TestOverheat(mediumTemp);
+
+	// создаем стенд и грузим в него двигатель
 	Stand stand(interСombEngine);
-	stand.startTest(testOverhead);
+
+	// запускаем стенд с выбранным тестом
+	stand.startStand(testOverhead);
+
+	system("pause");
 }

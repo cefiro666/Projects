@@ -4,5 +4,5 @@
 class Test
 {
 public:
-	virtual void startEngine(Engine*) = 0;
+	virtual void startTest(Engine*) = 0;
 };

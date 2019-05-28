@@ -4,7 +4,9 @@
 class Engine
 {
 public:
-	virtual void step() = 0;
+	virtual void stepSimulation() = 0;
+
+	virtual void resetEngine() = 0;
 
 	// коэффициент зависимости скорости нагрева от 
 	// крут€щего момента
@@ -28,7 +30,7 @@ public:
 	double Inert;
 
 	// температура перегрева двигател€
-	double tempOverheat;
+	double overheatTemp;
 
 	// скорость нагрева охл. жидкости
 	double heatRate;
@@ -39,7 +41,6 @@ public:
 	// зависимость крут€щего момента от скорости
 	// вращени€ вала
 	std::map<double, double> addiction;
-	std::map<double, double> ::iterator i, j;
 
 	// крут€щий момент
 	double M;
@@ -53,4 +54,3 @@ public:
 	// врем€ работы двигател€
 	double engineTime;
 };
-
