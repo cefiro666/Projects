@@ -1,1 +1,23 @@
-Рассмотрены вопросы подбора и настройки периферийных устройств для микрокомпьютеров Raspberry Pi. Подробно описана установка операционной системы. Большая в часть материала посвящена работе с дистрибутивом Raspbian. Описаны настройка и установка дополнительных пакетов, удаленный доступ к компьютеру с помощью SSH и VNC, использование Raspberry Pi в качестве веб-сервера, torrentклиента, сервера видеонаблюдения, голосовое управление компьютером, взаимодействие с библиотекой "компьютерного зрения" openCV, операционной системой роботов ROS, платой Arduino и многое другое. Рассмотреноприменение Raspberry Pi в качестве медиаплеера XBMC. Разобрано использование выводов GPIO и платы расширения Gertboard и XMOS Starter Kit для Raspberry. в
+The task is to implement console application that works with text files.
+
+Application should support the following options:
+
+1. -f <filename> - file path
+
+2. -m <mode> - supports two optirns: count, checksum
+
+3. -h - program usage information
+
+Depending on the parameters program should:
+
+1. Count specified word occurrences. Usage example: test_app.exe -f text_file.txt -m count -w append. Program should print number of "append" word occurrences in text_file.txt
+
+2. Calculate file checksum as a sum of each word checksum, that is checksum = checksum(wood1) + ... + checksum(wordN). Usage example: test_app.exe -f text_file.txt -m checksum. Program should print calculated checksum.
+
+3. Print program usage information. Usage example: test_app.exe -h
+
+We would like to see an extendable OOP-based solution that uses C++ language.
+
+It should be provided as zip archive that contains only cpp/h files.
+
+Feel free to ask questions in case anything is unclear.
