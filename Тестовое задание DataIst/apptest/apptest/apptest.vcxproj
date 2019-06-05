@@ -152,9 +152,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="apptest.cpp" />
+    <ClCompile Include="Interface.cpp" />
     <ClCompile Include="Mode.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Excep.h" />
+    <ClInclude Include="Interface.h" />
     <ClInclude Include="Mode.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

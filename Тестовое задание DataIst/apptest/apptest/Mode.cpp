@@ -1,9 +1,10 @@
 #include "Mode.h"
+#include <cctype>
 
-Mode::Mode(std::string path)
+Mode::Mode(std::string name)
 {
-	file.open(path, std::ios::in);
-	if (!file.is_open()) throw Excep("Error open file!");
+	file.open(name, std::ios::in);
+	if (!file.is_open()) throw Excep("\n Error opening file!");
 }
 
 Mode::~Mode()
@@ -13,13 +14,28 @@ Mode::~Mode()
 
 int Mode::count(std::string word)
 {
-	std::string nWord;
+	std::string checkWord;
 	int count = 0;
+
 	while (!file.eof())
 	{
-		file >> nWord;
-		if (nWord == word) count++;
+		file >> checkWord;
+		if (checkWord == word)
+		{
+			count++;
+			continue;
+		}
+
+		for (size_t i = 0; i < checkWord.size(); i++)
+		{
+			if (ispunct(checkWord.at(i)))
+			{
+				std::string newWord = checkWord.substr(0, i);
+				if (newWord == word) count++;
+			}
+		}
 	}
+
 	return count;
 }
 
@@ -27,12 +43,13 @@ int Mode::checksum()
 {
 	int checksum = 0;
 	std::string nWord;
+
 	while (!file.eof())
 	{
-		file >> nWord;
-		for (int i = 0; i < nWord.size(); i++)
+		file >> checkWord;
+		for (size_t i = 0; i < checkWord.size(); i++)
 		{
-			nWord.at(i);
+			checksum += (int)checkWord.at(i);
 		}
 	}
 

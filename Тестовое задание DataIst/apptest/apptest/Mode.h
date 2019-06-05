@@ -1,30 +1,24 @@
 #pragma once
 #include <iostream>
 #include <fstream>
+#include "Excep.h"
 
 class Mode
 {
 public:
-	Mode(std::string path);
+	Mode(std::string);
 
-	// при необходимости можно добавить 
-	// новые методы для работы с файлом
+	// if necessary, you can add new 
+	// methods to work with the file
 	//====================================
 
-	// счеткик вхождений слова
-	int count(std::string word);
+	// word occurrence counter
+	int count(std::string);
 
-	// контрольная сумма
+	// check sum
 	int checksum();
 
 	//====================================
-
-	class Excep 
-	{
-	public:
-		Excep(std::string error) : error(error) {}
-		std::string error;
-	};
 
 	~Mode();
 private:
