@@ -17,5 +17,5 @@ private:
 	sf::RectangleShape windowClose;
 	sf::RectangleShape windowCloseStrip1;
 	sf::RectangleShape windowCloseStrip2;
-	sf::Text numberText;
+	sf::Text windowTitle;
 };

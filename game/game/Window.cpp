@@ -25,9 +25,9 @@ Window::Window(int w, int h, int x, int y, int number, sf::RenderWindow* window)
 	windowPanel.setFillColor(sf::Color(0, 149, 182));
 	windowPanel.setPosition(sf::Vector2f(x, y));
 
-	numberText.setString(" Window " + std::to_string(number));
+	windowTitle.setString(" Window " + std::to_string(number));
 	//numberText.setFont();
-	numberText.setPosition(x, y);
+	windowTitle.setPosition(x, y);
 }
 
 void Window::draw()
@@ -37,7 +37,7 @@ void Window::draw()
 	window->draw(windowClose);
 	window->draw(windowCloseStrip1);
 	window->draw(windowCloseStrip2);
-	window->draw(numberText);
+	window->draw(windowTitle);
 }
 
 bool Window::onPanel(sf::Vector2f pos)
