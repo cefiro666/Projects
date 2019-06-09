@@ -75,7 +75,7 @@ int main()
 			{
 				if (event.key.code == sf::Mouse::Left)
 				{
-					// попытаться удалить окно (если щелчок по кнопке закрытия)
+					// попытаться удалить окно
 					if (!windowManager->deleteWindow(mousePosition))
 					{
 						// если удаления не было выставить контроль
