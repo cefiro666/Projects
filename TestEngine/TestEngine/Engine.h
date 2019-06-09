@@ -5,7 +5,6 @@ class Engine
 {
 public:
 	virtual void stepSimulation() = 0;
-
 	virtual void resetEngine() = 0;
 
 	// коэффициент зависимости скорости нагрева от 

@@ -3,8 +3,8 @@
   TestEngine.cpp
   TestOverheat.cpp
   Создание кода
-  6 of 175 functions ( 3.4%) were compiled, the rest were copied from previous compilation.
-    3 functions were new in current compilation
+  175 of 175 functions (100.0%) were compiled.
+    0 functions were new in current compilation
     0 functions had inline decision re-evaluated but remain unchanged
   Создание кода завершено
-  TestEngine.vcxproj -> C:\Users\cefiro\Documents\Projects\TestEngine\Release\TestEngine.exe
+  TestEngine.vcxproj -> D:\cefiro\Документы\Projects\TestEngine\Release\TestEngine.exe
