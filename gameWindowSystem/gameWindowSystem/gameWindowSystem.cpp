@@ -6,25 +6,6 @@ int main()
 	sf::RenderWindow display;
 	display.create(sf::VideoMode(1280, 768), "display", sf::Style::Close);
 
-	// создаем рабочий стол с папкой для красоты
-	// ================================================
-	sf::Texture wallpaper;
-	wallpaper.loadFromFile("desktop.png");
-
-	sf::RectangleShape desktop;
-	desktop.setSize(sf::Vector2f(display.getSize()));
-	desktop.setTexture(&wallpaper);
-	desktop.setPosition(sf::Vector2f(0, 0));
-
-	sf::Texture iconTex;
-	iconTex.loadFromFile("folder.png");
-
-	sf::RectangleShape icon;
-	icon.setTexture(&iconTex);
-	icon.setSize(sf::Vector2f(100,70));
-	icon.setPosition(sf::Vector2f(70, 50));
-	// ================================================
-
 	// создаем "оконный менеджер"
 	std::shared_ptr<WindowManager> windowManager(new WindowManagerSFML);
 
@@ -58,6 +39,16 @@ int main()
 				moveWindow = false;
 			}
 
+			// по нажатию N создать новое окно
+			// =================================================
+			if (event.type == sf::Event::KeyPressed && !pressMouse)
+			{
+				if (event.key.code == sf::Keyboard::N)
+				{
+					windowManager->createWindow(sf::Vector2f(400, 300));
+				}
+			}
+
 			// по нажатию Down опустить окно на уровень ниже
 			// =================================================
 			if (event.type == sf::Event::KeyPressed && !pressMouse)
@@ -87,14 +78,8 @@ int main()
 					// попытаться удалить окно (если щелчок по кнопке закрытия)
 					if (!windowManager->deleteWindow(mousePosition))
 					{
-						// если удаления не было, то создать окно (если щелчок по значку)
-						if (icon.getGlobalBounds().contains(sf::Vector2f(mousePosition))
-							&& windowManager->getActiveWindow(mousePosition) == 0)
-						{
-							windowManager->createWindow(sf::Vector2f(400, 300));
-						}
-
-						// выставить контроль мыши и разрешить движение окна
+						// если удаления не было выставить контроль
+						// мыши и разрешить движение окна
 						pressMouse = true;
 						moveWindow = true;
 					}	
@@ -113,9 +98,6 @@ int main()
 		// отрисовка окон
 		// ==================================================
 		display.clear();
-
-		display.draw(desktop);
-		display.draw(icon);
 
 		for (auto window : *(windowManager->getWindowsStack()))
 		{
